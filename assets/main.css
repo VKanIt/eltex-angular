@@ -4,6 +4,10 @@
   box-sizing:border-box
 }
 
+address {
+    font-style: normal;
+}
+
 .form {
     display: flex;
     flex-direction: column;
