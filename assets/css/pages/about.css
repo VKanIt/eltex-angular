@@ -93,7 +93,7 @@
     .skills__layout {
         width: 33.333%;
 
-        .skills__layout__item {
+        .skills__layout-item {
             p {
                 font-size: var(--fs-6)
             }
@@ -146,7 +146,7 @@
     .works__list {
         padding-left: var(--p-m-2);
 
-        .works__list__item {
+        .works__list-item {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
@@ -157,7 +157,7 @@
                 padding-top: var(--p-m-4);
             }
             
-            .works__list__item__logo {
+            .works__list-item-logo {
                 height: 50px;
                 width: 50px;
                 
@@ -168,7 +168,7 @@
                 }
             }
 
-            .works__list__item__description {
+            .works__list-item-description {
                 width: 90%;
                 padding-left: var(--p-m-1);
 
@@ -181,7 +181,7 @@
     }
 
     @media (max-width: 1279px) {
-        .works__list .works__list__item .works__list__item__description {
+        .works__list .works__list-item .works__list-item-description {
             width: 85%;
         }
     }
@@ -196,13 +196,13 @@
             margin-bottom: var(--p-m-4);
         }
 
-        .works__list .works__list__item .works__list__item__description {
+        .works__list .works__list-item .works__list-item-description {
             width: 90%;
         }
     }
 
     @media (max-width: 800px) {
-        .works__list .works__list__item .works__list__item__logo {
+        .works__list .works__list-item .works__list-item-logo {
     
             height: 30px;
             width: 30px;
@@ -210,11 +210,11 @@
     }
 
     @media (max-width: 370px) {
-        .works__list .works__list__item .works__list__item__logo {
+        .works__list .works__list-item .works__list-item-logo {
             display: none;
         }
 
-        .works__list .works__list__item .works__list__item__description {
+        .works__list .works__list-item .works__list-item-description {
             width: 100%;
             padding-left: 0;
         }
@@ -274,7 +274,7 @@
             grid-area: child-6;
         }
 
-        .hobbies__item__description {
+        .hobbies__item-description {
             position: absolute;
             overflow-y: auto;
             height: 100%;
@@ -296,7 +296,7 @@
         }
 
         &:hover {
-            .hobbies__item__description {
+            .hobbies__item-description {
                 top: 0;
             }
         }
@@ -313,7 +313,7 @@
         row-gap: var(--p-m-2);
         column-gap: var(--p-m-2);
 
-        .hobbies__item .hobbies__item__description p:nth-child(1) {
+        .hobbies__item .hobbies__item-description p:nth-child(1) {
             font-size: var(--fs-7);
         }
     }

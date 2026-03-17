@@ -9,11 +9,11 @@
         border-top-left-radius: var(--border-radius);
         border-bottom-left-radius: var(--border-radius);
         
-        .card-blog__content__category {
+        .card-blog__content-category {
             margin-bottom: var(--p-m-1);
         }
 
-        .card-blog__content__title {
+        .card-blog__content-title {
             font-size: var(--fs-3);
             font-weight: var(--fw-bold);
             line-height: 1.125;
@@ -31,7 +31,7 @@
         .card-blog__content {
             background-color: var(--bs-light-red);
 
-            .card-blog__content__category {
+            .card-blog__content-category {
                 color: var(--bs-red);
             }
         }
@@ -43,7 +43,7 @@
         .card-blog__content {
             background-color: var(--bs-light-green);
 
-            .card-blog__content__category {
+            .card-blog__content-category {
                 color: var(--bs-green);
             }
         }
@@ -77,7 +77,7 @@
         .card-blog__content {
             width: 50%;
 
-            .card-blog__content__title {
+            .card-blog__content-title {
                 font-size: var(--fs-5);
             }
         }
@@ -99,7 +99,7 @@
             border-bottom-right-radius: var(--border-radius);
             border-bottom-left-radius: var(--border-radius);
 
-            .card-blog__content__title {
+            .card-blog__content-title {
                 font-size: var(--fs-6);
             }
 
