@@ -1,0 +1,188 @@
+.card-blog {
+    display: flex;
+    flex-direction: row;
+    height: 400px;
+
+    .card-blog__content {
+        width: 40%;
+        padding: var(--p-m-6);
+        border-top-left-radius: var(--border-radius);
+        border-bottom-left-radius: var(--border-radius);
+        
+        .card-blog__content-category {
+            margin-bottom: var(--p-m-1);
+        }
+
+        .card-blog__content-title {
+            font-size: var(--fs-3);
+            font-weight: var(--fw-bold);
+            line-height: 1.125;
+            margin-bottom: var(--p-m-2);
+        }
+
+        .text-hidden {
+            -webkit-line-clamp: 6;
+        }
+    }
+
+    &:nth-child(1) {
+        margin-bottom: var(--p-m-6);
+
+        .card-blog__content {
+            background-color: var(--bs-light-red);
+
+            .card-blog__content-category {
+                color: var(--bs-red);
+            }
+        }
+    }
+
+    &:nth-child(2) {
+        margin-bottom: var(--p-m-3);
+
+        .card-blog__content {
+            background-color: var(--bs-light-green);
+
+            .card-blog__content-category {
+                color: var(--bs-green);
+            }
+        }
+    }
+   
+    .card-blog__image {
+        width: 60%;
+
+        img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            border-top-right-radius: var(--border-radius);
+            border-bottom-right-radius: var(--border-radius);
+        }
+    }
+
+    &.blogs {
+        &:nth-child(2) {
+            margin-bottom: 0;
+        }
+
+        time {
+            display: inline-block;
+            margin-bottom: var(--p-m-2);
+            color: var(--bs-gray);
+        }
+    }
+
+    @media (max-width: 1279px) {
+        .card-blog__content {
+            width: 50%;
+
+            .card-blog__content-title {
+                font-size: var(--fs-5);
+            }
+        }
+
+        .card-blog__image {
+            width: 50%;
+        }
+    }
+
+    @media (max-width: 800px) {
+        height: 100%;
+        flex-direction: column;
+
+        .card-blog__content {
+            padding: var(--p-m-4);
+            order: 2;
+            width: 100%;
+            border-top-left-radius: 0;
+            border-bottom-right-radius: var(--border-radius);
+            border-bottom-left-radius: var(--border-radius);
+
+            .card-blog__content-title {
+                font-size: var(--fs-6);
+            }
+
+            .text-hidden {
+                -webkit-line-clamp: 3;
+            }
+        }
+
+        .card-blog__image {
+            order: 1;
+            height: 300px;
+            width: 100%;
+
+            img {
+                border-top-right-radius: var(--border-radius);
+                border-top-left-radius: var(--border-radius);
+                border-bottom-right-radius: 0;
+            }
+        }
+    }
+}
+
+.card-blog-list {
+    display: flex;
+    flex-wrap: wrap;
+    
+    @media (min-width: 801px) {
+        margin-inline: -1rem;
+    }
+}
+
+.card-blog-min {
+    width: 33.333%;
+    padding-bottom: var(--p-m-3);
+
+    article {
+        border: 1px solid var(--bs-light-gray);
+        border-radius: var(--border-radius);
+    }
+
+    .card-blog-min__image {
+        height: 200px;
+
+        img {
+            border-top-left-radius: var(--border-radius);
+            border-top-right-radius: var(--border-radius);
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    .card-blog-min__bottom {
+        padding: var(--p-m-2);
+
+        p {
+            &:nth-child(1) {
+                font-size: var(--fs-6);
+                font-weight: var(--fw-bold);
+                margin-bottom: var(--p-m-2);
+            }
+        }
+
+        .text-hidden {
+            -webkit-line-clamp: 3;
+        }
+
+        time {
+            display: inline-block;
+            color: var(--bs-gray);
+            margin-top: var(--p-m-2);
+        }
+    }
+
+    @media (min-width: 801px) {
+        padding-inline: var(--p-m-2);
+    }
+
+    @media (max-width: 1023px) {
+        width: 50%;
+    }
+
+    @media (max-width: 800px) {
+        width: 100%;
+    }
+}
