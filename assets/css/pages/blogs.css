@@ -1,0 +1,38 @@
+.blogs-first-screen {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    
+    .blogs-first-screen__title {
+        width: 70%;
+
+        p {
+            font-size: var(--fs-6);
+        }
+    }
+
+    .blogs-first-screen__image {
+        img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+
+    @media (max-width: 800px) {
+        .blogs-first-screen__image {
+            height: 100px;
+            width: 100px;
+        }
+    }
+
+    @media (max-width: 400px) {
+        flex-direction: column;
+
+        .blogs-first-screen__title {
+            width: 100%;
+            margin-bottom: var(--p-m-2);
+        }
+    }
+}

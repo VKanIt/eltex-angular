@@ -3,207 +3,356 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/main.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="preload" href="assets/fonts/Inter/inter-norma-cirillic.woff2" as="font" type="font/woff2">
     <title>Главная</title>
 </head>
 <body>
-    <header>
-        <nav>
+    <header class="container header">
+        <p class="header__title">
+            Мое портфолио
+        </p>
+        <nav class="header__nav">
             <ul>
                 <li>
-                    <a href="#head">Главная</a>
+                    <a 
+                        class="link" 
+                        href="#head"
+                    >
+                        Обо мне
+                    </a>
                 </li>
                 <li>
-                    <a href="blog.html">Блог</a>
+                    <a
+                        class="link"
+                        href="blog.html"
+                    >
+                        Блог
+                    </a>
                 </li>
             </ul>
         </nav>
     </header>
-    <main>
-        <section>
-            <h1 id="head">
-                Обо мне
-            </h1>
-            <p>
-                Добро пожаловать! Я веб-разработчик с 5-летним опытом в создании интерактивных интерфейсов. На этом блоге я делюсь своими знаниями, проектами и идеями о том, как технология меняет способ общения людей. Здесь вы найдёте туториалы, кейсы из реальной практики и вдохновляющие истории.
-            </p>
-            <img 
-                alt="Изображение" 
-                src="public/images/image.png"
-            >
+    <main class="container">
+        <section class="about-first-screen mb-6">
+            <div class="about-first-screen__title">
+                <h1 id="head">
+                    Привет! Я Nelsom, разработчик
+                </h1>
+                <p>
+                    Добро пожаловать! Я веб-разработчик с 5-летним опытом в создании интерактивных интерфейсов. На этом блоге я делюсь своими знаниями, проектами и идеями о том, как технология меняет способ общения людей. Здесь вы найдёте туториалы, кейсы из реальной практики и вдохновляющие истории.
+                </p>
+                <a
+                    class="link-arrow"
+                    href="#skills"
+                >
+                    <span>Больше обо мне</span>
+                    <svg>
+                        <use xlink:href="public/sprite-svg/arrow-right.svg#arrow-right">
+                    </svg>
+                </a>
+            </div>
+            <div class="about-first-screen__image">
+                <img
+                    src="public/images/image.png"
+                    alt="avatar"
+                >
+            </div>
         </section>
-        <section>
-            <h1>
-                Моя карьера
-            </h1>
-            
-            <article>
-                <h2>
-                    Текущая должность:
-                </h2>
-                <p>
-                    Старший веб-разработчик, ООО "DigitalStudio" (2022 — по настоящее время)<br>
-                    Руководство командой из 4 разработчиков, разработка архитектуры фронтенда, менторство младших специалистов, внедрение новых технологий в рабочий процесс.
-                </p>
-            </article>
-            
-            <article>
-                <h2>
-                    Опыт работы:
-                </h2>
-                <h3>
-                    Веб-разработчик, ООО "CreativeAgency" (2019 — 2022)
-                </h3>
-                <p>
-                    Создание корпоративных сайтов и веб-приложений на React и Vue.js, оптимизация производительности, работа с клиентами и сбор требований.
-                </p>
-                <h3>
-                    Фронтенд-разработчик, Стартап "TechVenture" (2018 — 2019)
-                </h3>
-                <p>
-                    Разработка пользовательского интерфейса для платформы e-learning, работа с REST API и веб-стандартами.
-                </p>
-                <h3>
-                    Интернет-стажёр, Веб-студия "WebMasters" (2017 — 2018)
-                </h3>
-                <p>
-                    Первый опыт в профессиональной разработке, участие в создании и поддержке различных проектов.
-                </p>
+        <section class="mb-6">
+            <article class="card-blog">
+                <div class="card-blog__content">
+                    <p class="card-blog__content__category">
+                        Дизайн
+                    </p>
+                    <p class="card-blog__content__title">
+                        Как создать адаптивный дизайн за 30 минут
+                    </p>
+                    <p class="text-hidden">
+                        В этой статье я расскажу о ключевых принципах создания мобильных интерфейсов, которые одинаково хорошо выглядят на всех устройствах. Вы узнаете о медиа-запросах, гибких сетках и практических примерах кода, которые можно использовать прямо сейчас.
+                        В этой статье я расскажу о ключевых принципах создания мобильных интерфейсов, которые одинаково хорошо выглядят на всех устройствах. Вы узнаете о медиа-запросах, гибких сетках и практических примерах кода, которые можно использовать прямо сейчас.
+                    </p>
+                </div>
+                <div class="card-blog__image">
+                    <img
+                        src="public/images/blogs/image_blog.png"
+                        alt="card-blog-1"
+                    >
+                </div>
             </article>
 
-            <article>
+            <article class="card-blog">
+                <div class="card-blog__content">
+                    <p class="card-blog__content__category">
+                        Дизайн
+                    </p>
+                    <p class="card-blog__content__title">
+                        Как создать адаптивный дизайн за 30 минут
+                    </p>
+                    <p class="text-hidden">
+                        В этой статье я расскажу о ключевых принципах создания мобильных интерфейсов, которые одинаково хорошо выглядят на всех устройствах. Вы узнаете о медиа-запросах, гибких сетках и практических примерах кода, которые можно использовать прямо сейчас.
+                        В этой статье я расскажу о ключевых принципах создания мобильных интерфейсов, которые одинаково хорошо выглядят на всех устройствах. Вы узнаете о медиа-запросах, гибких сетках и практических примерах кода, которые можно использовать прямо сейчас.
+                    </p>
+                </div>
+                <div class="card-blog__image">
+                    <img
+                        src="public/images/blogs/image_blog.png"
+                        alt="card-blog-1"
+                    >
+                </div>
+            </article>
+
+            <div class="content-center">
+                <a
+                    href="blog.html"
+                    class="btn btn-outline"
+                >
+                    Посмотреть все посты
+                </a>    
+            </div>
+        </section>
+
+        <section class="mb-6">
+            <h2 id="skills">
+                Мои навыки
+            </h2>
+            <div class="skills">
+                <article class="skills__layout">
+                    <div class="skills__layout__item">
+                        <p>
+                            Программирование
+                        </p>
+                    </div>
+                </article>
+                <article class="skills__layout">
+                    <div class="skills__layout__item">
+                        <p>
+                            Инструменты
+                        </p>
+                    </div>
+                </article>
+                <article class="skills__layout">
+                    <div class="skills__layout__item">
+                        <p>
+                            Методолгии
+                        </p>
+                    </div>
+                </article>
+            </div>
+        </section>
+        <section class="works mb-6">
+            <div class="works__title">
                 <h2>
-                    Образование:
+                    Моя работа
                 </h2>
-                <h3>
-                    Государственный Технический Университет, 2013 — 2017
-                </h3>
                 <p>
-                    Бакалавриат по специальности "Информатика и вычислительная техника"<br>
-                    Выпускная работа: "Оптимизация загрузки веб-страниц на мобильных устройствах"
+                    Старший веб-разработчик, ООО "DigitalStudio" (2022 — по настоящее время). Руководство командой из 4 разработчиков, разработка архитектуры фронтенда, менторство младших специалистов, внедрение новых технологий в рабочий процесс.
                 </p>
-            </article>
-            
-            <article>
+            </div>
+            <div class="works__list">
+                <article class="works__list__item">
+                    <div class="works__list__item__logo">
+                        <img
+                            src="public/images/company_logo/webmasters.png"
+                            alt="webmasters"
+                        >
+                    </div>
+                    <div class="works__list__item__description">
+                        <p>
+                            Веб-студия "WebMasters" (2017 — 2018)
+                        </p>
+                        <p>
+                            Интернет-стажёр
+                        </p>
+                        <p>
+                            Первый опыт в профессиональной разработке, участие в создании и поддержке различных проектов.
+                        </p>
+                    </div>
+                </article>
+                <article class="works__list__item">
+                    <div class="works__list__item__logo">
+                        <img
+                            src="public/images/company_logo/tech_venture.png"
+                            alt="tech_venture"
+                        >
+                    </div>
+                    <div class="works__list__item__description">
+                        <p>
+                            Стартап "TechVenture" (2018 — 2019)
+                        </p>
+                        <p>
+                            Фронтенд-разработчик
+                        </p>
+                        <p>
+                            Разработка пользовательского интерфейса для платформы e-learning, работа с REST API и веб-стандартами.
+                        </p>
+                    </div>
+                </article>
+                <article class="works__list__item">
+                    <div class="works__list__item__logo">
+                        <img
+                            src="public/images/company_logo/creative_agency.png"
+                            alt="creative_agency"
+                        >
+                    </div>
+                    <div class="works__list__item__description">
+                        <p>
+                            ООО "CreativeAgency" (2019 — 2022)
+                        </p>
+                        <p>
+                            Веб-разработчик
+                        </p>
+                        <p>
+                            Создание корпоративных сайтов и веб-приложений на React и Vue.js, оптимизация производительности, работа с клиентами и сбор требований.
+                        </p>
+                    </div>
+                </article>
+            </div>
+        </section>
+        <section class="hobbies">
+            <div class="hobbies__item">
                 <h2>
-                    Курсы и сертификации:
+                    Хобби-проекты
                 </h2>
-                <ul>
-                    <li>
-                        Advanced React Development — Coursera (2023)
-                    </li>
-                    <li>
-                        UX/UI Design Fundamentals — Skillbox (2021)
-                    </li>
-                    <li>
-                        Web Performance Optimization — Frontend Masters (2022)
-                    </li>
-                    <li>
-                        Google Analytics Certification (2020)
-                    </li>
-                </ul>
-            </article>
-            
-            <article>
-                <h2>
-                    Навыки:
-                </h2>
-                <ul>
-                    <li>
-                        Программирование: JavaScript, TypeScript, React, Vue.js, HTML5, CSS3, Node.js
-                    </li>
-                    <li>
-                        Инструменты: Git, Webpack, Docker, Figma, VS Code
-                    </li>
-                    <li>
-                        Методологии: Agile, Scrum, Test-Driven Development
-                    </li>
-                </ul>
-            </article>
-            
-            <article>
-                <h2>
-                    Достижения:
-                </h2>
-                <ul>
-                    <li>
+            </div>
+            <div class="hobbies__item">
+                <p>
+                    Организовал две конференции "Web Technologies Conference" в своем городе
+                </p>
+            </div>
+            <div class="hobbies__item">
+                <img
+                    src="public/images/hobbies/hobby_1.png"
+                    alt="hobby_1"
+                >
+                <div class="hobbies__item__description">
+                    <p>
+                        Платформа УП
+                    </p>
+                    <p>
                         Разработал платформу для управления проектами, которой пользуются более 500 компаний
-                    </li>
-                    <li>
-                        Снизил время загрузки сайта на 60% благодаря оптимизации и внедрению современных стандартов
-                    </li>
-                    <li>
-                        Провёл более 20 воркшопов и мастер-классов для начинающих разработчиков
-                    </li>
-                    <li>
-                        Организовал две конференции "Web Technologies Conference" в своем городе
-                    </li>
-                </ul>
-            </article>
-        </section>
-        <section>
-            <h1>
-                Последнии статьи
-            </h1>
-            
-            <article>
-                <h2>
-                    Как создать адаптивный дизайн за 30 минут
-                </h2>
-                <p>
-                    Опубликовано: <time datetime="2024-12-15">15 декабря 2024</time>
-                </p>
-                <p>
-                    В этой статье я расскажу о ключевых принципах создания мобильных интерфейсов, которые одинаково хорошо выглядят на всех устройствах. Вы узнаете о медиа-запросах, гибких сетках и практических примерах кода, которые можно использовать прямо сейчас.
-                </p>
-            </article>
-
-            <article>
-                <h2>
-                    Как создать адаптивный дизайн за 30 минут
-                </h2>
-                <p>
-                    Опубликовано: <time datetime="2024-12-15">15 декабря 2024</time>
-                </p>
-                <p>
-                    В этой статье я расскажу о ключевых принципах создания мобильных интерфейсов, которые одинаково хорошо выглядят на всех устройствах. Вы узнаете о медиа-запросах, гибких сетках и практических примерах кода, которые можно использовать прямо сейчас.
-                </p>
-            </article>
-
-            <article>
-                <h2>
-                    Как создать адаптивный дизайн за 30 минут
-                </h2>
-                <p>
-                    Опубликовано: <time datetime="2024-12-15">15 декабря 2024</time>
-                </p>
-                <p>
-                    В этой статье я расскажу о ключевых принципах создания мобильных интерфейсов, которые одинаково хорошо выглядят на всех устройствах. Вы узнаете о медиа-запросах, гибких сетках и практических примерах кода, которые можно использовать прямо сейчас.
-                </p>
-            </article>
-
-            <a
-                href="blog.html"
-                class="btn"
-            >
-                Посмотреть все статьи
-            </a>
+                    </p>
+                </div>
+            </div>
+            <div class="hobbies__item">
+                <img
+                    src="public/images/hobbies/hobby_2.png"
+                    alt="hobby_2"
+                >
+                <div class="hobbies__item__description">
+                    <p>
+                        Платформа УП
+                    </p>
+                    <p>
+                        Разработал платформу для управления проектами, которой пользуются более 500 компаний
+                    </p>
+                </div>
+            </div>
+            <div class="hobbies__item">
+                <img
+                    src="public/images/blogs/image_blog.png"
+                    alt="hobby_3"
+                >
+                <div class="hobbies__item__description">
+                    <p>
+                        Платформа УП
+                    </p>
+                    <p>
+                        Разработал платформу для управления проектами, которой пользуются более 500 компаний
+                    </p>
+                </div>
+            </div>
+            <div class="hobbies__item">
+                <img
+                    src="public/images/blogs/image_blog.png"
+                    alt="hobby_4"
+                >
+                <div class="hobbies__item__description">
+                    <p>
+                        Платформа УП
+                    </p>
+                    <p>
+                        Разработал платформу для управления проектами, которой пользуются более 500 компаний
+                    </p>
+                </div>
+            </div>
         </section>
     </main>
-    <footer>
-        <h1>
-            Контакты
-        </h1>
-        <p>
-            Email: <a href="mailto:alex@creativeblog.ru">alex@creativeblog.ru</a><br>
-            Телефон: <a href="tel:+79991234567">+7 (999) 123-45-67</a>
-        </p>
-        <h2>
-            Социальные сети
-        </h2>
-        <p>
-            Instagram | Twitter | LinkedIn | GitHub
-        </p>
+    <footer class="bg-black">
+        <div class="footer container">
+            <div class="footer__layout">
+                <p class="head head__footer">
+                    Поздоровайся и давай работать вместе!
+                </p>
+                <p>
+                    Email: <a target="_blank" href="mailto:alex@creativeblog.ru">alex@creativeblog.ru</a><br>
+                    Телефон: <a target="_blank" href="tel:+79991234567">+7 (999) 123-45-67</a>
+                </p>
+                <div class="footer__socials">
+                    <a
+                        href="https://vk.com/alex"
+                        target="_blank"
+                        title="vk"
+                    >
+                        <svg>
+                            <use xlink:href="public/sprite-svg/vk.svg#vk">
+                        </svg>
+                    </a>
+                    <a
+                        href="https://t.me/alex"
+                        target="_blank"
+                        title="telegram"
+                    >
+                        <svg>
+                            <use xlink:href="public/sprite-svg/telegram.svg#telegram">
+                        </svg>
+                    </a>
+                    <a
+                        href="https://github.com/alex"
+                        target="_blank"
+                        title="git"
+                    >
+                        <svg>
+                            <use xlink:href="public/sprite-svg/git.svg#git">
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="footer__layout">
+                <p class="head head__footer_mobile">
+                    Поздоровайся и давай работать вместе!
+                </p>
+                <form method="post">
+                    <label>
+                        <span>Email</span>
+                        <input
+                            type="input"
+                            name="title"
+                            placeholder="Ваш Email адрес"
+                        />
+                    </label>
+                    <label>
+                        <span>Введите свое сообщение</span>
+                        <textarea
+                            name="text"
+                            placeholder="Опишите ваш проект"
+                            rows="5"
+                        ></textarea>
+                    </label>
+                    <div class="content-center">
+                        <button
+                            class="btn" 
+                            type="submit"
+                        >
+                            Отправить
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="footer__layout">
+                © 2026 Brand, Inc
+            </div>
+        </div>
     </footer>
 </body>
 </html>
