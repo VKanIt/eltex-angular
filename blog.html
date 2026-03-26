@@ -3,12 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/pages/blogs.css">
+    <script src="assets/js/main.js" defer></script>
+    <script src="assets/js/modals.js" defer></script>
+    <script src="assets/js/blogs.js" defer></script>
     <link rel="preload" href="assets/fonts/Inter/inter-norma-cyrillic.woff2" as="font" type="font/woff2">
     <link rel="preload" href="assets/fonts/Inter/inter-norma-latin.woff2" as="font" type="font/woff2">
     <title>Блог</title>
 </head>
-<body>
+<body class="position-relative">
     <header class="container header">
         <p class="header__title">
             Мое портфолио
@@ -52,17 +55,29 @@
                     >
                 </div>
             </div>
+            
+            <div class="blogs-empty">
+                Нет статей
+            </div>
+            
+            <div class="card-blog-list"></div>
 
-            <article class="card-blog blogs mb-6">
+            <div class="content-center">
+                <button class="btn btn-outline btn-more">
+                    Показать еще
+                </button>    
+            </div>
+        </section>
+
+        <template id="blog-first">
+            <article 
+                class="card-blog blogs mb-6"
+                data-index="0"
+            >
                 <div class="card-blog__content">
-                    <time datetime="2024-12-15">15 дек 2024</time>
-                    <p class="card-blog__content-title">
-                        Как создать адаптивный дизайн за 30 минут
-                    </p>
-                    <p class="text-hidden">
-                        В этой статье я расскажу о ключевых принципах создания мобильных интерфейсов, которые одинаково хорошо выглядят на всех устройствах. Вы узнаете о медиа-запросах, гибких сетках и практических примерах кода, которые можно использовать прямо сейчас.
-                        В этой статье я расскажу о ключевых принципах создания мобильных интерфейсов, которые одинаково хорошо выглядят на всех устройствах. Вы узнаете о медиа-запросах, гибких сетках и практических примерах кода, которые можно использовать прямо сейчас.
-                    </p>
+                    <time datetime=""></time>
+                    <p class="card-blog__content-title title"></p>
+                    <p class="text-hidden description"></p>
                 </div>
                 <div class="card-blog__image">
                     <img
@@ -71,138 +86,28 @@
                     >
                 </div>
             </article>
-            
-            <div class="card-blog-list">
-                <div class="card-blog-min">
-                    <article>
-                        <div class="card-blog-min__image">
-                            <img
-                                src="public/images/blogs/image_blog.png"
-                                alt="blog-1"
-                            >
-                        </div>
-                        <div class="card-blog-min__bottom">
-                            <p>
-                                Как создать адаптивный дизайн за 30 минут
-                            </p>
-                            <p class="text-hidden">
-                                В этой статье я расскажу о ключевых принципах создания мобильных интерфейсов, которые одинаково хорошо выглядят на всех устройствах. Вы узнаете о медиа-запросах, гибких сетках и практических примерах кода, которые можно использовать прямо сейчас.
-                            </p>
-                            <time datetime="2024-12-15">15 дек 2024</time>
-                        </div>
-                    </article>
-                </div>
+        </template>
 
-                <div class="card-blog-min">
-                    <article>
-                        <div class="card-blog-min__image">
-                            <img
-                                src="public/images/blogs/image_blog.png"
-                                alt="blog-1"
-                            >
-                        </div>
-                        <div class="card-blog-min__bottom">
-                            <p>
-                                Как создать адаптивный дизайн за 30 минут
-                            </p>
-                            <p class="text-hidden">
-                                В этой статье я расскажу о ключевых принципах создания мобильных интерфейсов, которые одинаково хорошо выглядят на всех устройствах. Вы узнаете о медиа-запросах, гибких сетках и практических примерах кода, которые можно использовать прямо сейчас.
-                            </p>
-                            <time datetime="2024-12-15">15 дек 2024</time>
-                        </div>
-                    </article>
-                </div>
-
-                <div class="card-blog-min">
-                    <article>
-                        <div class="card-blog-min__image">
-                            <img
-                                src="public/images/blogs/image_blog.png"
-                                alt="blog-1"
-                            >
-                        </div>
-                        <div class="card-blog-min__bottom">
-                            <p>
-                                Как создать адаптивный дизайн за 30 минут
-                            </p>
-                            <p class="text-hidden">
-                                В этой статье я расскажу о ключевых принципах создания мобильных интерфейсов, которые одинаково хорошо выглядят на всех устройствах. Вы узнаете о медиа-запросах, гибких сетках и практических примерах кода, которые можно использовать прямо сейчас.
-                            </p>
-                            <time datetime="2024-12-15">15 дек 2024</time>
-                        </div>
-                    </article>
-                </div>
-
-                <div class="card-blog-min">
-                    <article>
-                        <div class="card-blog-min__image">
-                            <img
-                                src="public/images/blogs/image_blog.png"
-                                alt="blog-1"
-                            >
-                        </div>
-                        <div class="card-blog-min__bottom">
-                            <p>
-                                Как создать адаптивный дизайн за 30 минут
-                            </p>
-                            <p class="text-hidden">
-                                В этой статье я расскажу о ключевых принципах создания мобильных интерфейсов, которые одинаково хорошо выглядят на всех устройствах. Вы узнаете о медиа-запросах, гибких сетках и практических примерах кода, которые можно использовать прямо сейчас.
-                            </p>
-                            <time datetime="2024-12-15">15 дек 2024</time>
-                        </div>
-                    </article>
-                </div>
-
-                <div class="card-blog-min">
-                    <article>
-                        <div class="card-blog-min__image">
-                            <img
-                                src="public/images/blogs/image_blog.png"
-                                alt="blog-1"
-                            >
-                        </div>
-                        <div class="card-blog-min__bottom">
-                            <p>
-                                Как создать адаптивный дизайн за 30 минут
-                            </p>
-                            <p class="text-hidden">
-                                В этой статье я расскажу о ключевых принципах создания мобильных интерфейсов, которые одинаково хорошо выглядят на всех устройствах. Вы узнаете о медиа-запросах, гибких сетках и практических примерах кода, которые можно использовать прямо сейчас.
-                            </p>
-                            <time datetime="2024-12-15">15 дек 2024</time>
-                        </div>
-                    </article>
-                </div>
-
-                <div class="card-blog-min">
-                    <article>
-                        <div class="card-blog-min__image">
-                            <img
-                                src="public/images/blogs/image_blog.png"
-                                alt="blog-1"
-                            >
-                        </div>
-                        <div class="card-blog-min__bottom">
-                            <p>
-                                Как создать адаптивный дизайн за 30 минут
-                            </p>
-                            <p class="text-hidden">
-                                В этой статье я расскажу о ключевых принципах создания мобильных интерфейсов, которые одинаково хорошо выглядят на всех устройствах. Вы узнаете о медиа-запросах, гибких сетках и практических примерах кода, которые можно использовать прямо сейчас.
-                            </p>
-                            <time datetime="2024-12-15">15 дек 2024</time>
-                        </div>
-                    </article>
-                </div>
+        <template id="blog-min">
+            <div 
+                class="card-blog-min"
+                data-index=""
+            >
+                <article>
+                    <div class="card-blog-min__image">
+                        <img
+                            src="public/images/blogs/image_blog.png"
+                            alt="blog-1"
+                        >
+                    </div>
+                    <div class="card-blog-min__bottom">
+                        <p class="title"></p>
+                        <p class="text-hidden description"></p>
+                        <time datetime=""></time>
+                    </div>
+                </article>
             </div>
-
-            <div class="content-center">
-                <a
-                    href="blog.html?page=1"
-                    class="btn btn-outline"
-                >
-                    Cледующий
-                </a>    
-            </div>
-        </section>
+        </template>
     </main>
     <footer class="bg-black">
         <div class="footer container">
@@ -280,5 +185,26 @@
             </div>
         </div>
     </footer>
+    <div id="modal-container"></div>
+    <div class="admin-panel">
+        <button
+            data-modal="addBlog"
+            class="btn-icon"
+            title="Добавить статью"
+        >
+            <svg>
+                <use xlink:href="public/sprite-svg/add-blog.svg#add-blog">
+            </svg>
+        </button>
+        <button
+            data-modal="showStatistic"
+            class="btn-icon"
+            title="Показать статистику"
+        >
+            <svg>
+                <use xlink:href="public/sprite-svg/statistic.svg#statistic">
+            </svg>
+        </button>
+    </div>
 </body>
 </html>

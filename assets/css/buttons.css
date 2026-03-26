@@ -8,7 +8,7 @@ button, a {
     color: var(--bs-gray);
     text-decoration: none;
 
-    &:hover {
+    &:hover, &.active {
         color: var(--bs-green);
         font-weight: var(--fw-bold);
     }
@@ -54,5 +54,18 @@ button, a {
             color: #fff;
             background-color: var(--bs-green);
         }
+    }
+}
+
+.btn-icon {
+    display: flex;
+    align-items: center;
+    border: 0;
+    background: none;
+    padding: 0;
+
+    svg {
+        height: 100%;
+        width: 100%;
     }
 }

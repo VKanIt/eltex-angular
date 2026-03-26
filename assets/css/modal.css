@@ -1,0 +1,113 @@
+.modal {
+    position: fixed;
+    z-index: 1000;
+    border: 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: none;
+    align-items: center;
+    border-radius: var(--border-radius);
+    padding: 0;
+
+    transition: opacity 0.4s ease;
+    opacity: 0;
+
+    &[open] {
+        opacity: 1;
+
+        @starting-style {
+            opacity: 0;
+        }
+    }
+
+    .modal-content {
+        background: #fff;
+        width: 600px;
+        padding: var(--p-m-3);
+
+        .modal__header {
+            display: flex;
+            align-items: center;
+            margin-bottom: var(--p-m-2);
+
+            .modal__header-title {
+                font-size: var(--fs-5);
+                font-weight: var(--fw-bold);   
+                text-align: center;
+                width: 100%;
+            }
+
+            .modal__close {
+                height: 50px;
+                width: 50px;
+            }
+        }
+    }
+
+    @media (max-width: 800px) {
+        width: 400px;
+    }
+
+    @media (max-width: 576px) {
+        .modal-content {
+            padding: var(--p-m-2);
+        }
+    }
+}
+
+.modal-statistic {
+    width: 400px;
+}
+
+.block-statistic {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+
+    .block-statistic__layout {
+        width: 50%;
+
+        &:nth-child(1) {
+            padding-right: var(--p-m-2);
+        }
+
+        &:nth-child(2) {
+            padding-left: var(--p-m-2);
+        }
+    }
+
+    .block-statistic__item {
+        padding: var(--p-m-1);
+        border-radius: var(--border-radius);
+        box-shadow: 1px 1px 2px 1px rgba(0,0,0,.25);
+
+        .block-statistic__item-title {
+            font-size: var(--fs-7);
+            margin-bottom: var(--p-m-1);
+        }
+
+        .block-statistic__item-number {
+            font-size: var(--fs-3);
+            font-weight: var(--fw-bold);
+        }
+    }
+
+    @media (max-width: 375px) {
+        flex-direction: column;
+
+        .block-statistic__layout {
+            width: 100%;
+            
+            &:nth-child(1) {
+                padding-bottom: var(--p-m-2);
+                padding-right: 0;
+            }
+
+            &:nth-child(2) {
+                padding: 0;
+            }
+        }
+    }
+}
