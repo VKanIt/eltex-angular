@@ -87,6 +87,24 @@ class Blog {
         });
     }
 
+    delBlog(btn) {
+        btn.addEventListener('click', (e) => {
+            let article = e.target.closest('.card-blog-min');
+
+            if (article === null) {
+                article = e.target.closest('article');
+            }
+
+            this.blogs.splice(Number(article.dataset.index), 1);
+            
+            this.renderBlog(0, this.count + (this.count < this.blogs.length ? 0 : 1));
+
+            this.changeListBlogs();
+
+            this.getStatistics();
+        });
+    }
+
     renderBlog(start, end, isMore = false) {
         const blogFirst = document.querySelector('.card-blog');
         const blockListBlogs = document.querySelector('.card-blog-list');
@@ -102,9 +120,9 @@ class Blog {
         }
 
         const sliceBlogs = this.blogs.slice(start, end);
-
+        const countOld = this.count;
         this.count = start === 0 ? end : (this.count + sliceBlogs.length);
-
+        
         sliceBlogs.map((item, index) => {
             if (index === 0 && !isMore) {
                 article = document.getElementById('blog-first').content.cloneNode(true).querySelector('article');
@@ -120,12 +138,17 @@ class Blog {
 
             article.querySelector('.title').innerText = item.title;
             article.querySelector('.description').innerText = item.text;
+            
+            article.dataset.index = index + (!isMore ? 0 : countOld);
+            
 
             if (index === 0 && !isMore) {
                 blockFirstScreen.after(article);
             } else {
                 blockListBlogs.appendChild(article);
             }
+
+            this.delBlog(article.querySelector('.btn-del'));
         });
     }
 
