@@ -4,6 +4,17 @@
     height: 400px;
     border-radius: var(--border-radius);
     overflow: hidden;
+    position: relative;
+
+    .btn-icon {
+        display: none;
+    }
+
+    &:hover {
+        .btn-icon {
+            display: block;
+        }
+    }
 
     .card-blog__content {
         width: 40%;
@@ -127,9 +138,20 @@
     padding-bottom: var(--p-m-3);
 
     article {
+        position: relative;
         border: 1px solid var(--bs-light-gray);
         border-radius: var(--border-radius);
         overflow: hidden;
+
+        .btn-icon {
+            display: none;
+        }
+
+        &:hover {
+            .btn-icon {
+                display: block;
+            }
+        }
     }
 
     .card-blog-min__image {

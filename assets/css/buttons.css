@@ -68,4 +68,25 @@ button, a {
         height: 100%;
         width: 100%;
     }
+
+    &.btn-del {
+        border-radius: var(--border-radius);
+        background: var(--bs-invalid);
+        color: #fff;
+        padding: var(--p-m-1);
+        width: 40px;
+        height: 40px;
+
+        svg {
+            fill: #fff;
+        }
+    }
+
+    &.blog {
+        position: absolute;
+        right: 0;
+        top: 0;
+        margin-right: var(--p-m-1);
+        margin-top: var(--p-m-1);
+    }
 }

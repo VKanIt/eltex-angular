@@ -74,6 +74,14 @@
                 class="card-blog blogs mb-6"
                 data-index="0"
             >
+                <button 
+                    class="btn-icon btn-del blog"
+                    title="Удалить статью"
+                >
+                    <svg>
+                        <use xlink:href="public/sprite-svg/trash.svg#trash" />
+                    </svg>
+                </button>
                 <div class="card-blog__content">
                     <time datetime=""></time>
                     <p class="card-blog__content-title title"></p>
@@ -91,9 +99,17 @@
         <template id="blog-min">
             <div 
                 class="card-blog-min"
-                data-index=""
+                data-index="0"
             >
                 <article>
+                    <button 
+                        class="btn-icon btn-del blog"
+                        title="Удалить статью"
+                    >
+                        <svg>
+                            <use xlink:href="public/sprite-svg/trash.svg#trash" />
+                        </svg>
+                    </button>
                     <div class="card-blog-min__image">
                         <img
                             src="public/images/blogs/image_blog.png"
