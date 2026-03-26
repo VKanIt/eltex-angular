@@ -1,0 +1,91 @@
+<dialog id="addBlog" class="modal">
+    <div class="modal-content">
+        <div class="modal__header">
+            <p class="modal__header-title">
+                Добавить статью
+            </p>
+            <button 
+                class="btn-icon modal__close"
+                title="Закрыть"
+            >
+                <svg>
+                    <use xlink:href="public/sprite-svg/close.svg#close">
+                </svg>
+            </button>
+        </div>
+        <form
+            class="form-add-blog"
+            method="post"
+            novalidate
+        >
+            <label>
+                <span>Заголовок</span>
+                <input
+                    type="input"
+                    name="title"
+                    placeholder="Заголовок статьи"
+                    required
+                />
+                <span class="invalid-message">Введите заголовок</span>
+            </label>
+            <label>
+                <span>Текст статьи</span>
+                <textarea
+                    name="text"
+                    placeholder="Введите текст..."
+                    rows="5"
+                    required
+                ></textarea>
+                <span class="invalid-message">Введите заголовок</span>
+            </label>
+            <div class="content-center">
+                <button
+                    class="btn" 
+                    type="submit"
+                >
+                    Добавить
+                </button>
+            </div>
+        </form>
+    </div>
+</dialog>
+
+<dialog id="showStatistic" class="modal modal-statistic">
+    <div class="modal-content">
+        <div class="modal__header">
+            <p class="modal__header-title">
+                Статистика страницы
+            </p>
+            <button 
+                class="btn-icon modal__close"
+                title="Закрыть"
+            >
+                <svg>
+                    <use xlink:href="public/sprite-svg/close.svg#close">
+                </svg>
+            </button>
+        </div>
+        <div class="block-statistic">
+            <div class="block-statistic__layout">
+                <div class="block-statistic__item">
+                    <p class="block-statistic__item-title">
+                        Всего статей:
+                    </p>
+                    <p class="block-statistic__item-number">
+                        0
+                    </p>
+                </div>
+            </div>
+            <div class="block-statistic__layout">
+                <div class="block-statistic__item">
+                    <p class="block-statistic__item-title">
+                        Комментарии:
+                    </p>
+                    <p class="block-statistic__item-number">
+                        0
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</dialog>

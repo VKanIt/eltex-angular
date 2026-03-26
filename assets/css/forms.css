@@ -26,3 +26,24 @@ form {
         }
     }
 }
+
+.invalid {
+    border-color: var(--bs-invalid) !important;
+}
+
+.invalid-message {
+    display: none;
+    font-size: var(--fs-9);
+    color: var(--bs-invalid);
+    margin-top: var(--p-m-05);
+    margin-bottom: 0;
+    line-height: 1;
+}
+
+.form-add-blog {
+    input, textarea {
+        background-color: #fff;
+        color: var(--bs-black);
+        border: 1px solid var(--bs-black);
+    }
+}

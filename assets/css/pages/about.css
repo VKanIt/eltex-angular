@@ -1,3 +1,11 @@
+@import url(../base.css);
+@import url(../header.css);
+@import url(../footer.css);
+@import url(../layout.css);
+@import url(../forms.css);
+@import url(../buttons.css);
+@import url(../components.css);
+
 .about-first-screen {
     display: flex;
     align-items: center;
