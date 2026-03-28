@@ -1,36 +1,28 @@
+import { loadListBlogs, renderBlog } from "./utils.js";
+import { Modal } from "./modal.js";
+
 class Blog {
-    constructor () {
+    constructor() {
         this.init();
     }
 
     async init() {
-        this.blogs = [];
         this.limit = 6;
-        this.count = 0;
 
         this.emptyBlogs =  document.querySelector('.blogs-empty');
         this.buttonMoreBlogs = document.querySelector('.btn-more');
 
         this.modalContainer = await (new Modal()).init();
         
-        this.loadListBlogs();
-        this.addBlog();
-        this.showMoreBlogs();
-    }
+        this.blogs = loadListBlogs();
+        this.count = renderBlog(0, this.limit + 1, this.blogs, 0);
 
-    loadListBlogs() {
-        const tmp = localStorage.getItem('blogs');
+        this.addListenerDelButton();
 
-        if (tmp === null || tmp === '') {
-            localStorage.setItem('blogs', JSON.stringify(this.blogs));
-        } else {
-            this.blogs = JSON.parse(tmp);
-            this.blogs.sort((a, b) => b.date - a.date)
-        }
-
-        this.renderBlog(0, this.limit + 1);
         this.changeListBlogs();
         this.getStatistics();
+        this.addBlog();
+        this.showMoreBlogs();
     }
 
     changeListBlogs() {
@@ -41,7 +33,8 @@ class Blog {
 
     showMoreBlogs() {
         document.querySelector('.btn-more').addEventListener('click', (e) => {
-            this.renderBlog(this.count, this.count + this.limit, true);
+            this.count = renderBlog(this.count, this.count + this.limit, this.blogs, this.count, true);
+            this.addListenerDelButton();
 
             if (this.count >= this.blogs.length) {
                 this.buttonMoreBlogs.style.display = 'none';
@@ -74,7 +67,9 @@ class Blog {
 
             this.blogs.unshift(newBlog);
 
-            this.renderBlog(0, this.count + (this.count < this.blogs.length - 1 ? 0 : 1));
+            this.count = renderBlog(0, this.count + (this.count < this.blogs.length - 1 ? 0 : 1), this.blogs, this.count);
+
+            this.addListenerDelButton();
 
             this.changeListBlogs();
 
@@ -87,68 +82,25 @@ class Blog {
         });
     }
 
-    delBlog(btn) {
-        btn.addEventListener('click', (e) => {
-            let article = e.target.closest('.card-blog-min');
+    addListenerDelButton() {
+        const buttonsDel = document.querySelectorAll('.btn-del');
+        buttonsDel.forEach((node) => {
+            node.addEventListener('click', (e) => {
+                let article = e.target.closest('.card-blog-min');
 
-            if (article === null) {
-                article = e.target.closest('article');
-            }
+                if (article === null) {
+                    article = e.target.closest('article');
+                }
 
-            this.blogs.splice(Number(article.dataset.index), 1);
-            
-            this.renderBlog(0, this.count + (this.count < this.blogs.length ? 0 : 1));
+                this.blogs.splice(Number(article.dataset.index), 1);
 
-            this.changeListBlogs();
+                this.count = renderBlog(0, this.count + (this.count < this.blogs.length ? 0 : 1), this.blogs, this.count);
+                this.addListenerDelButton();
 
-            this.getStatistics();
-        });
-    }
+                this.changeListBlogs();
 
-    renderBlog(start, end, isMore = false) {
-        const blogFirst = document.querySelector('.card-blog');
-        const blockListBlogs = document.querySelector('.card-blog-list');
-        const blockFirstScreen = document.querySelector('.blogs-first-screen');
-        let article;
-        
-        if (!isMore) {
-            if (blogFirst !== null) {
-                blogFirst.remove();
-            }
-
-            blockListBlogs.innerHTML = '';
-        }
-
-        const sliceBlogs = this.blogs.slice(start, end);
-        const countOld = this.count;
-        this.count = start === 0 ? end : (this.count + sliceBlogs.length);
-        
-        sliceBlogs.map((item, index) => {
-            if (index === 0 && !isMore) {
-                article = document.getElementById('blog-first').content.cloneNode(true).querySelector('article');
-            } else {
-                article = document.getElementById('blog-min').content.cloneNode(true).querySelector('.card-blog-min');
-            }
-
-            const time = article.querySelector('time');
-            
-            const date = new Date(item.date);
-            time.setAttribute('datetime', date.getFullYear() + '-' + (Number(date.getMonth()) < 10 ? '0' : '') + date.getMonth() + '-' + date.getDate());
-            time.innerText = date.toLocaleString('ru', { day: 'numeric', month: 'long', year: 'numeric' });
-
-            article.querySelector('.title').innerText = item.title;
-            article.querySelector('.description').innerText = item.text;
-            
-            article.dataset.index = index + (!isMore ? 0 : countOld);
-            
-
-            if (index === 0 && !isMore) {
-                blockFirstScreen.after(article);
-            } else {
-                blockListBlogs.appendChild(article);
-            }
-
-            this.delBlog(article.querySelector('.btn-del'));
+                this.getStatistics();
+            });
         });
     }
 

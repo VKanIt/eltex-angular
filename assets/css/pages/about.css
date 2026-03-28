@@ -292,7 +292,6 @@
             opacity: 0.9;
             color: #fff;
             padding: var(--p-m-2);
-            border-radius: var(--border-radius);
 
             p:nth-child(1) {
                 font-size: var(--fs-5);

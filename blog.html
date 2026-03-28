@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/pages/blogs.css">
     <script src="assets/js/main.js" defer></script>
-    <script src="assets/js/modals.js" defer></script>
-    <script src="assets/js/blogs.js" defer></script>
+    <script src="assets/js/blogs.js" type="module"></script>
     <link rel="preload" href="assets/fonts/Inter/inter-norma-cyrillic.woff2" as="font" type="font/woff2">
     <link rel="preload" href="assets/fonts/Inter/inter-norma-latin.woff2" as="font" type="font/woff2">
     <title>Блог</title>
@@ -71,7 +70,7 @@
 
         <template id="blog-first">
             <article 
-                class="card-blog blogs mb-6"
+                class="card-blog mb-6"
                 data-index="0"
             >
                 <button 
@@ -117,8 +116,10 @@
                         >
                     </div>
                     <div class="card-blog-min__bottom">
-                        <p class="title"></p>
-                        <p class="text-hidden description"></p>
+                        <div>
+                            <p class="title"></p>
+                            <p class="text-hidden description"></p>
+                        </div>
                         <time datetime=""></time>
                     </div>
                 </article>
