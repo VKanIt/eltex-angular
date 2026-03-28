@@ -5,6 +5,7 @@
     border-radius: var(--border-radius);
     overflow: hidden;
     position: relative;
+    width: 100%;
 
     .btn-icon {
         display: none;
@@ -20,10 +21,6 @@
         width: 40%;
         padding: var(--p-m-6);
         
-        .card-blog__content-category {
-            margin-bottom: var(--p-m-1);
-        }
-
         .card-blog__content-title {
             font-size: var(--fs-3);
             font-weight: var(--fw-bold);
@@ -37,26 +34,14 @@
     }
 
     &:nth-child(1) {
-        margin-bottom: var(--p-m-6);
-
         .card-blog__content {
             background-color: var(--bs-light-red);
-
-            .card-blog__content-category {
-                color: var(--bs-red);
-            }
         }
     }
 
     &:nth-child(2) {
-        margin-bottom: var(--p-m-3);
-
         .card-blog__content {
             background-color: var(--bs-light-green);
-
-            .card-blog__content-category {
-                color: var(--bs-green);
-            }
         }
     }
    
@@ -70,16 +55,10 @@
         }
     }
 
-    &.blogs {
-        &:nth-child(2) {
-            margin-bottom: 0;
-        }
-
-        time {
-            display: inline-block;
-            margin-bottom: var(--p-m-2);
-            color: var(--bs-gray);
-        }
+    time {
+        display: inline-block;
+        margin-bottom: var(--p-m-2);
+        color: var(--bs-gray);
     }
 
     @media (max-width: 1279px) {
@@ -138,10 +117,13 @@
     padding-bottom: var(--p-m-3);
 
     article {
+        height: 100%;
         position: relative;
         border: 1px solid var(--bs-light-gray);
         border-radius: var(--border-radius);
         overflow: hidden;
+        display: flex;
+        flex-direction: column;
 
         .btn-icon {
             display: none;
@@ -156,6 +138,7 @@
 
     .card-blog-min__image {
         height: 200px;
+        flex-shrink: 0;
 
         img {
             width: 100%;
@@ -165,6 +148,10 @@
     }
 
     .card-blog-min__bottom {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 200px;
         padding: var(--p-m-2);
 
         p {

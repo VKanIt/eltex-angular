@@ -1,4 +1,4 @@
-class Modal {
+export class Modal {
     async init() {
         this.modalContainer = document.getElementById('modal-container');
         
