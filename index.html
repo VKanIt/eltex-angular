@@ -65,23 +65,27 @@
         <section class="mb-6">
             <div class="card-blog-list"></div>
 
-            <template id="blog-first">
-                <article 
-                    class="card-blog mb-3"
+            <div class="loader"></div>
+
+            <template id="blog">
+                <div 
+                    class="card-blog blog-layout mb-3"
                     data-index="0"
                 >
-                    <div class="card-blog__content">
-                        <time datetime=""></time>
-                        <p class="card-blog__content-title title"></p>
-                        <p class="text-hidden description"></p>
-                    </div>
-                    <div class="card-blog__image">
-                        <img
-                            src="public/images/blogs/image_blog.png"
-                            alt="card-blog-1"
-                        >
-                    </div>
-                </article>
+                    <article>
+                        <div class="card-blog__content">
+                            <time datetime=""></time>
+                            <p class="card-blog__content-title title"></p>
+                            <p class="text-hidden description"></p>
+                        </div>
+                        <div class="card-blog__image">
+                            <img
+                                src="public/images/blogs/image_blog.png"
+                                alt="card-blog-1"
+                            >
+                        </div>
+                    </article>
+                </div>
             </template>
 
             <div class="content-center link-all-blogs">

@@ -1,4 +1,4 @@
-import { loadListBlogs, renderBlog } from "./utils.js";
+import { loadListBlogs, renderBlog, showLoader, hideLoader } from "./utils.js";
 
 class About {
     constructor() {
@@ -6,10 +6,18 @@ class About {
     }
 
     init() {
+        const loader = document.querySelector('.loader');
         const blogs = loadListBlogs();
-        renderBlog(0, 2, blogs, 0, false, true);
 
-        document.querySelector('.link-all-blogs').style.display = blogs.length === 0 ? 'none' : 'flex';
+        showLoader(loader);
+        new Promise((resolve) => {
+            setTimeout(() => {
+                resolve(renderBlog(0, 2, blogs, 0, false, true));
+            }, 2000);
+        }).finally(() => {
+            hideLoader(loader);
+            document.querySelector('.link-all-blogs').style.display = blogs.length === 0 ? 'none' : 'flex';
+        });
     }
 }
 

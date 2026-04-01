@@ -4,14 +4,12 @@ class Main {
     }
 
     init() {
-        document.addEventListener('DOMContentLoaded', (e) => {
-            const navButtons = e.target.querySelectorAll('.header__nav a');
+        const navButtons = document.querySelectorAll('.header__nav a');
             
-            navButtons.forEach((item) => {
-                if (window.location.pathname === item.pathname) {
-                    item.classList.add('active');
-                }
-            });
+        navButtons.forEach((item) => {
+            if (window.location.pathname === item.pathname) {
+                item.classList.add('active');
+            }
         });
     }
 }
