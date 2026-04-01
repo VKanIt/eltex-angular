@@ -27,8 +27,18 @@ form {
     }
 }
 
-.invalid {
-    border-color: var(--bs-invalid) !important;
+.input-box {
+    &.invalid {
+        border-color: var(--bs-invalid) !important;
+    }
+
+    &:disabled {
+        opacity: 0.6;
+    }
+}
+
+.input-wrapper:has(.invalid) .invalid-message {
+    display: block;
 }
 
 .invalid-message {

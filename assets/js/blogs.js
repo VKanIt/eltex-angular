@@ -1,4 +1,4 @@
-import { loadListBlogs, renderBlog } from "./utils.js";
+import { loadListBlogs, renderBlog, showLoader, hideLoader} from "./utils.js";
 import { Modal } from "./modal.js";
 
 class Blog {
@@ -11,17 +11,27 @@ class Blog {
 
         this.emptyBlogs =  document.querySelector('.blogs-empty');
         this.buttonMoreBlogs = document.querySelector('.btn-more');
+        this.loader = document.querySelector('.loader');
 
         this.modalContainer = await (new Modal()).init();
         
         this.blogs = loadListBlogs();
-        this.count = renderBlog(0, this.limit + 1, this.blogs, 0);
+        
+        showLoader(this.loader);
+        new Promise((resolve) => {
+            setTimeout(() => {
+                resolve(renderBlog(0, this.limit + 1, this.blogs, 0));
+            }, 2000);
+        }).then((data) => {
+            this.count = data;
+        }).finally(() => {
+            this.changeListBlogs();
+            this.getStatistics();
+            hideLoader(this.loader);
+        });
 
-        this.addListenerDelButton();
-
-        this.changeListBlogs();
-        this.getStatistics();
         this.addBlog();
+        this.delBlog();
         this.showMoreBlogs();
     }
 
@@ -34,7 +44,6 @@ class Blog {
     showMoreBlogs() {
         document.querySelector('.btn-more').addEventListener('click', (e) => {
             this.count = renderBlog(this.count, this.count + this.limit, this.blogs, this.count, true);
-            this.addListenerDelButton();
 
             if (this.count >= this.blogs.length) {
                 this.buttonMoreBlogs.style.display = 'none';
@@ -47,7 +56,6 @@ class Blog {
         if (form === null) {
             return;
         }
-
 
         const modal = form.closest('dialog');
         this.checkValid(form, true);
@@ -66,41 +74,49 @@ class Blog {
             };
 
             this.blogs.unshift(newBlog);
+            e.target['title'].disabled = true;
+            e.target['text'].disabled = true;
+            const button = e.target.querySelector('.btn[type="submit"]');
+            button.disabled = true;
 
-            this.count = renderBlog(0, this.count + (this.count < this.blogs.length - 1 ? 0 : 1), this.blogs, this.count);
+            new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve(renderBlog(0, this.count + (this.count < this.blogs.length - 1 ? 0 : 1), this.blogs, this.count));
+                }, 1000);
+            }).then((data) => {
+                this.count = data;
+            }).finally(() => {
+                this.changeListBlogs();
+                this.getStatistics();
+                e.target.reset();
 
-            this.addListenerDelButton();
+                modal.style.display = 'none';
+                modal.close();
+
+                e.target['title'].disabled = false;
+                e.target['text'].disabled = false;
+                button.disabled = false;
+            });
+        });
+    }
+
+    delBlog() {
+        document.querySelector('.card-blog-list').addEventListener('click', (e) => {
+            const btn = e.target.closest('.btn-del');
+
+            if (btn === null) {
+                return;
+            }
+
+            const article = btn.closest('.blog-layout');
+
+            this.blogs.splice(Number(article.dataset.index), 1);
+
+            this.count = renderBlog(0, this.count + (this.count < this.blogs.length ? 0 : 1), this.blogs, this.count);
 
             this.changeListBlogs();
 
             this.getStatistics();
-            
-            e.target.reset();
-
-            modal.style.display = 'none';
-            modal.close();
-        });
-    }
-
-    addListenerDelButton() {
-        const buttonsDel = document.querySelectorAll('.btn-del');
-        buttonsDel.forEach((node) => {
-            node.addEventListener('click', (e) => {
-                let article = e.target.closest('.card-blog-min');
-
-                if (article === null) {
-                    article = e.target.closest('article');
-                }
-
-                this.blogs.splice(Number(article.dataset.index), 1);
-
-                this.count = renderBlog(0, this.count + (this.count < this.blogs.length ? 0 : 1), this.blogs, this.count);
-                this.addListenerDelButton();
-
-                this.changeListBlogs();
-
-                this.getStatistics();
-            });
         });
     }
 
@@ -129,14 +145,10 @@ class Blog {
     }
 
     validation(elem) {
-        const label = elem.closest('label');
-
         if (!elem.validity.valid) {
             elem.classList.add('invalid');
-            label.querySelector('.invalid-message').style.display = 'block';
         } else {
             elem.classList.remove('invalid');
-            label.querySelector('.invalid-message').style.display = 'none';
         }
 
         return elem.validity.valid;

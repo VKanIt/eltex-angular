@@ -55,6 +55,10 @@ button, a {
             background-color: var(--bs-green);
         }
     }
+
+    &:disabled {
+        opacity: 0.6;
+    }
 }
 
 .btn-icon {
@@ -89,4 +93,12 @@ button, a {
         margin-right: var(--p-m-1);
         margin-top: var(--p-m-1);
     }
+}
+
+.btn-more {
+    display: none;
+}
+
+.link-all-blogs {
+    display: none;
 }

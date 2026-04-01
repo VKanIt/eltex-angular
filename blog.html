@@ -66,38 +66,13 @@
                     Показать еще
                 </button>    
             </div>
+
+            <div class="loader"></div>
         </section>
 
-        <template id="blog-first">
-            <article 
-                class="card-blog mb-6"
-                data-index="0"
-            >
-                <button 
-                    class="btn-icon btn-del blog"
-                    title="Удалить статью"
-                >
-                    <svg>
-                        <use xlink:href="public/sprite-svg/trash.svg#trash" />
-                    </svg>
-                </button>
-                <div class="card-blog__content">
-                    <time datetime=""></time>
-                    <p class="card-blog__content-title title"></p>
-                    <p class="text-hidden description"></p>
-                </div>
-                <div class="card-blog__image">
-                    <img
-                        src="public/images/blogs/image_blog.png"
-                        alt="card-blog-1"
-                    >
-                </div>
-            </article>
-        </template>
-
-        <template id="blog-min">
+        <template id="blog">
             <div 
-                class="card-blog-min"
+                class="card-blog-min blog-layout"
                 data-index="0"
             >
                 <article>

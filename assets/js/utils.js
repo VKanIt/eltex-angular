@@ -14,29 +14,18 @@ export function loadListBlogs() {
 
 export function renderBlog(start, end, blogs, count, isMore = false, isAboutPage = false) {
     const blockListBlogs = document.querySelector('.card-blog-list');
-    const blockFirstScreen = document.querySelector('.blogs-first-screen');
-    let article;
     
     if (!isMore && !isAboutPage) {
-        const blogFirst = document.querySelector('.card-blog');
-        if (blogFirst !== null) {
-            blogFirst.remove();
-        }
-
-        blockListBlogs.innerHTML = '';
+         blockListBlogs.innerHTML = '';
     }
 
     const sliceBlogs = blogs.slice(start, end);
 
     const countOld = count;
     const newCount = start === 0 ? end : (count + sliceBlogs.length);
-    
+
     sliceBlogs.map((item, index) => {
-        if ((index === 0 || isAboutPage) && !isMore) {
-            article = document.getElementById('blog-first').content.cloneNode(true).querySelector('article');
-        } else {
-            article = document.getElementById('blog-min').content.cloneNode(true).querySelector('.card-blog-min');
-        }
+        const article = document.getElementById('blog').content.cloneNode(true).querySelector('.blog-layout');
 
         const time = article.querySelector('time');
         
@@ -50,13 +39,17 @@ export function renderBlog(start, end, blogs, count, isMore = false, isAboutPage
         article.dataset.index = index + (!isMore ? 0 : countOld);
         
 
-        if (index === 0 && !isAboutPage && !isMore) {
-            blockFirstScreen.after(article);
-        } else {
-            blockListBlogs.appendChild(article);
-        }
+        blockListBlogs.appendChild(article);
     });
 
     return newCount;
+}
+
+export function showLoader(loader) {
+    loader.style.display = 'flex';
+}
+
+export function hideLoader(loader) {
+    loader.style.display = 'none';
 }
 
