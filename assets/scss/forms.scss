@@ -1,0 +1,59 @@
+form {
+    display: flex;
+    flex-direction: column;
+
+    input, textarea {
+        padding: var(--p-m-2);
+        width: 100%;
+        border-radius: var(--border-radius);
+        border: 1px solid var(--bs-border-input);
+        background-color: var(--bg-black);
+        color: #fff;
+        font-size: var(--fs-8);
+        font-family: 'Inter', sans-serif;
+        outline: none;
+    }
+
+    textarea {
+        resize: none;
+    }
+
+    label {
+        margin-bottom: var(--p-m-2);
+
+        span {
+            padding-left: var(--p-m-1);
+        }
+    }
+}
+
+.input-box {
+    &.invalid {
+        border-color: var(--bs-invalid) !important;
+    }
+
+    &:disabled {
+        opacity: 0.6;
+    }
+}
+
+.input-wrapper:has(.invalid) .invalid-message {
+    display: block;
+}
+
+.invalid-message {
+    display: none;
+    font-size: var(--fs-9);
+    color: var(--bs-invalid);
+    margin-top: var(--p-m-05);
+    margin-bottom: 0;
+    line-height: 1;
+}
+
+.form-add-blog {
+    input, textarea {
+        background-color: #fff;
+        color: var(--bs-black);
+        border: 1px solid var(--bs-black);
+    }
+}

@@ -1,0 +1,31 @@
+.modal-header {
+    padding: var(--p-m-2) var(--p-m-2) 0 var(--p-m-2);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .title {
+        text-align: center;
+        font-size: var(--fs-5);
+        font-weight: var(--fw-bold);
+        width: 100%;
+    }
+
+    .btn-close {
+        border: 0;
+        background: none;
+
+        svg {
+            height: 35px;
+            width: 35px;
+        }
+
+        &:hover {
+            opacity: 0.7;
+        }
+    }
+}
+
+.mat-mdc-dialog-content {
+    color: var(--bs-black) !important;
+}
