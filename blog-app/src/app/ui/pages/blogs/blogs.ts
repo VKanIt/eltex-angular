@@ -29,20 +29,20 @@ export class Blogs {
     {
         id: 3,
         date: new Date(),
-        title: 'test2',
-        text: 'test2'
+        title: 'test3',
+        text: 'test3'
     },
     {
         id: 4,
         date: new Date(),
-        title: 'test2',
-        text: 'test2'
+        title: 'test4',
+        text: 'test4'
     },
     {
         id: 5,
         date: new Date(),
-        title: 'test2',
-        text: 'test2'
+        title: 'test5',
+        text: 'test5'
     }
 ] as any[]);
 
