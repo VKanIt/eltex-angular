@@ -1,0 +1,36 @@
+<div class="modal-header">
+    <p class="title">Статистика статей</p>
+    <button 
+        class="btn-close"
+        title="Закрыть"
+        (click)="closeDialog()"
+    >
+        <svg>
+            <use xlink:href="/assets/sprite-svg/close.svg#close" />
+        </svg>
+    </button>
+</div>
+<mat-dialog-content>
+    <div class="block-statistic">
+        <div class="block-statistic__layout">
+            <div class="block-statistic__item">
+                <p class="block-statistic__item-title">
+                    Всего статей:
+                </p>
+                <p class="block-statistic__item-number">
+                    {{ data.count }}
+                </p>
+            </div>
+        </div>
+        <div class="block-statistic__layout">
+            <div class="block-statistic__item">
+                <p class="block-statistic__item-title">
+                    Комментарии:
+                </p>
+                <p class="block-statistic__item-number">
+                    0
+                </p>
+            </div>
+        </div>
+    </div>
+</mat-dialog-content>

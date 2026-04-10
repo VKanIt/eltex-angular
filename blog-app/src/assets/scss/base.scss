@@ -1,0 +1,139 @@
+:root {
+    --bs-black: #323747;
+    --bs-gray: #68686A;
+    --bs-light-gray: #BDC1CA;
+    --bs-red: #DB5E31;
+    --bs-green: #61C15C;
+    --bs-light-red: #FEF3EF;
+    --bs-light-green: #F4FBF4;
+    --bs-medium-green: #cdfccd;
+    --bs-border-input: #DDE0E7;
+    --bs-invalid: #d32d30;
+
+    --bg-black: #1E2128;
+
+    --fw-bold: 700;
+    --fw-normal: 400;
+
+    --fs-1: 3.25rem;
+    --fs-2: 2.5rem;
+    --fs-3: 2rem;
+    --fs-4: 1.875rem;
+    --fs-5: 1.5rem;
+    --fs-6: 1.25rem;
+    --fs-7: 1.125rem;
+    --fs-8: 1rem;
+    --fs-9: 0.8125rem;
+
+    --p-m-05: 0.25rem;
+    --p-m-1: 0.5rem;
+    --p-m-2: 1rem;
+    --p-m-3: 1.5rem;
+    --p-m-4: 2rem;
+    --p-m-5: 2.5rem;
+    --p-m-6: 3rem;
+    --p-m-7: 3.5rem;
+    --p-m-8: 4rem;
+
+    --border-radius: 0.5rem;
+
+
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    line-height: 26px;
+    color: var(--bs-black);
+    scroll-behavior: smooth;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url(/assets/fonts/Inter/inter-norma-cyrillic.woff2) format('woff2')
+        url(/assets/fonts/Inter/inter-norma-latin.woff2) format('woff2');
+    font-weight: var(--fw-normal);
+    font-style: normal;
+}
+
+*,
+:after,
+:before {
+  box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+address {
+    font-style: normal;
+}
+
+h1, h2, .head-1 {
+    font-weight: var(--fw-bold);
+    line-height: 1.125;
+    margin-bottom: 2rem;
+    margin-top: 0;
+}
+
+h1, .head-1 {
+    font-size: var(--fs-1);
+
+    @media (max-width: 1279px) {
+        font-size: var(--fs-2);
+    }
+
+    @media (max-width: 800px) {
+        font-size: var(--fs-3);
+    }
+}
+
+h2 {
+    font-size: var(--fs-2);
+
+    @media (max-width: 1279px) {
+        font-size: var(--fs-3);
+    }
+
+    @media (max-width: 800px) {
+        font-size: var(--fs-5);
+    }
+}
+
+p {
+    margin: 0;
+}
+
+.bg-black {
+    background-color: var(--bg-black);
+}
+
+main {
+    margin-bottom: var(--p-m-7);
+}
+
+.mb-6 {
+    margin-bottom: 6rem !important;
+}
+
+.mb-3 {
+    margin-bottom: 3rem !important;
+}
+
+.text-hidden {
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    word-break: break-all;
+}
+
+.position-relative {
+    position: relative;
+}
+
+.order-1 {
+    order: 1;
+}
+
+.order-2 {
+    order: 2;
+}
