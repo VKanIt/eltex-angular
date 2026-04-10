@@ -1,0 +1,66 @@
+<main class="container">
+    <section>
+        <div class="blogs-first-screen mb-6">
+            <div class="blogs-first-screen__title">
+                <h1 id="head">
+                    Мои статьи
+                </h1>
+                <p>
+                    В статьях я рассказываю о своих интересных проектах, полезных советах и решения проблем, которыми я сталкивался при создании того или ониго проекта.
+                </p>
+            </div>
+            <div class="blogs-first-screen__image">
+                <img
+                    src="/assets/images/selection.png"
+                    alt="selection"
+                >
+            </div>
+        </div>
+        
+        <div class="card-blog-list">
+            @for (item of blogs(); track item.id) {
+                <div class="card-blog-min blog-layout">
+                    <app-card-blog 
+                        [title]="item.title"
+                        [text]="item.text"
+                        [date]="item.date"
+                        (delete)="deleteBlog($index)"
+                    />
+                </div>
+            } @empty {
+                <div class="blogs-empty">
+                    Нет статей
+                </div>
+            }
+        </div>
+
+        <div class="content-center">
+            <button class="btn btn-outline btn-more">
+                Показать еще
+            </button>    
+        </div>
+
+        <div class="loader"></div>
+    </section>
+
+    <div class="admin-panel">
+        <button
+            class="btn-icon"
+            title="Добавить статью"
+            (click)="openModalAddBlog()"
+        >
+            <svg>
+                <use xlink:href="/assets/sprite-svg/add-blog.svg#add-blog" />
+            </svg>
+        </button>
+        <button
+            class="btn-icon"
+            title="Показать статистику"
+            (click)="openModalStatisticBlogs()"
+        >
+            <svg>
+                <use xlink:href="/assets/sprite-svg/statistic.svg#statistic" />
+            </svg>
+        </button>
+    </div>
+</main>

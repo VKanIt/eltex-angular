@@ -1,0 +1,36 @@
+<article>
+    @if (!isBigCard()) { 
+        <button
+            class="btn-icon btn-del blog"
+            title="Удалить статью"
+            (click)="deleteBlog()"
+        >
+            <svg>
+                <use xlink:href="/assets/sprite-svg/trash.svg#trash" />
+            </svg>
+        </button>
+    }
+    <div [class]="isBigCard() ? 'card-blog__image order-2' : 'card-blog-min__image'">
+        <img
+            [src]="image()"
+            alt="blog-1"
+        >
+    </div>
+    <div [class]="isBigCard() ? 'card-blog__content order-1' : 'card-blog-min__bottom'">
+        <div [class]="{'order-2' : isBigCard()}">
+            <p 
+                class="title"
+                [class]="{'card-blog__content-title' : isBigCard()}"
+            >
+                {{ title() }}
+            </p>
+            <p class="text-hidden description">{{ text() }}</p>
+        </div>
+        <time
+            [class]="{'order-1' : isBigCard()}"
+            [dateTime]="date().getFullYear() + '-' + date().getMonth() + '-' + date().getDate()"
+        >
+            {{ date().toLocaleString('ru', {year: "numeric", month: "long", day: "numeric"}) }}
+        </time>
+    </div>
+</article>

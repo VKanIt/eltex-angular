@@ -1,0 +1,338 @@
+.about-first-screen {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+
+    &__title {
+        width: 50%;
+
+        p {
+            color: var(--bs-gray);
+            margin-bottom: var(--p-m-2);
+        }
+    }
+
+    &__image {
+        width: 400px;
+        position: relative;
+
+        img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            border-bottom-left-radius: 50%;
+            border-bottom-right-radius: 50%;
+        }
+
+        &:after {
+            content: '';
+            background: url(/assets/images/selection.png) no-repeat;
+            background-size: cover;
+            height: 200px;
+            width: 200px;
+            position: absolute;
+            left: -30%;
+            top: 25%;
+        }
+    }
+
+    @media (max-width: 1279px) {
+        &__image {
+            width: 300px;
+
+            &:after {
+                height: 150px;
+                width: 150px;
+            }
+        }
+    }
+
+    @media (max-width: 1023px) {
+        &__image {
+            width: 250px;
+        
+            &:after {
+                left: -35%;
+            }
+        }
+    }
+
+    @media (max-width: 800px) {
+        flex-direction: column;
+        
+        &__title {
+            width: 100%;
+            order: 2;
+        }
+
+        &__image {
+            width: 100%;
+            order: 1;
+            margin-bottom: var(--p-m-2);
+            text-align: center;
+
+            img {
+                height: 300px;
+                width: 300px;
+                border-top-left-radius: 50%;
+                border-top-right-radius: 50%;
+            }
+
+            &:after {
+                display: none;
+            }
+        }
+    }
+}
+
+.skills {
+    display: flex;
+    flex-wrap: wrap;
+
+    &__layout {
+        width: 33.333%;
+
+        &-item {
+            p {
+                font-size: var(--fs-6)
+            }
+
+            &::after {
+                content: '';
+                display: block;
+                height: 2px;
+                width: 100%;
+                background-color: var(--bs-light-gray);
+                margin-top: var(--p-m-3);
+            }
+        }
+    }
+
+    @media (min-width: 801px) {
+        margin-inline: -1rem;
+
+        &__layout {
+            padding-inline: var(--p-m-2);
+        }
+    }
+
+    @media (max-width: 800px) {
+        margin-inline: 0;
+
+        &__layout {
+            width: 100%;
+            padding-inline: 0;
+            
+            &:not(:nth-last-child(1)) {
+                padding-bottom: var(--p-m-4);
+            }
+        }
+    }
+}
+
+.works {
+    display: flex;
+    flex-wrap: wrap;
+
+    &__title, &__list {
+        width: 50%;
+    }
+
+    &__title {
+        padding-right: var(--p-m-2);
+    }
+
+    &__list {
+        padding-left: var(--p-m-2);
+
+        &-item {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            border-bottom: 2px solid var(--bs-light-gray);
+            padding-bottom: var(--p-m-4);
+
+            &:not(:nth-child(1)) {
+                padding-top: var(--p-m-4);
+            }
+            
+            &-logo {
+                height: 50px;
+                width: 50px;
+                
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+
+            &-description {
+                width: 90%;
+                padding-left: var(--p-m-1);
+
+                p:nth-child(2) {
+                    font-size: var(--fs-6);
+                    margin-block: var(--p-m-2);
+                }
+            }
+        }
+    }
+
+    @media (max-width: 1279px) {
+        &__list {
+            &-item {
+                &-description {
+                    width: 85%;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 1023px) {
+        &__title, &__list {
+            width: 100%;
+            padding: 0;
+        }
+
+        &__title {
+            margin-bottom: var(--p-m-4);
+        }
+
+        &__list {
+            &-item {
+                &-description {
+                    width: 90%;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 800px) {
+        &__list {
+            &-item {
+                &-logo {
+                    height: 30px;
+                    width: 30px;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 370px) {
+        &__list {
+            &-item {
+                &-logo {
+                    display: none;
+                }
+
+                &-description {
+                    width: 100%;
+                    padding-left: 0;
+                }
+            }
+        }
+    }
+}
+
+.hobbies {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    row-gap: var(--p-m-3);
+    column-gap: var(--p-m-3);
+    grid-template-areas: 
+        "child-1 child-1 child-2 child-2"
+        "child-3 child-4 child-5 child-5"
+        "child-3 child-4 child-6 child-6";
+    
+    
+    &__item {
+        position: relative;
+        border-radius: var(--border-radius);
+        overflow: hidden;
+        
+        h2 {
+            margin-bottom: 0;
+        }
+
+        img {
+            border-radius: var(--border-radius);
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        &:nth-child(1) {
+            align-self: end;
+            grid-area: child-1;
+        }
+
+        &:nth-child(2) {
+            align-self: end;
+            grid-area: child-2;
+        }
+
+        &:nth-child(3) {
+            grid-area: child-3;
+        }
+
+        &:nth-child(4) {
+            grid-area: child-4;
+        }
+
+        &:nth-child(5) {
+            grid-area: child-5;
+        }
+
+        &:nth-child(6) {
+            grid-area: child-6;
+        }
+
+        &-description {
+            position: absolute;
+            overflow-y: auto;
+            height: 100%;
+            top: 100%;
+            left: 0;
+            background-color: var(--bg-black);
+            opacity: 0.9;
+            color: #fff;
+            padding: var(--p-m-2);
+
+            p:nth-child(1) {
+                font-size: var(--fs-5);
+                font-weight: var(--fw-bold);
+                margin-bottom: var(--p-m-2);
+            }
+
+            transition: 0.3s ease-in-out;
+        }
+
+        &:hover {
+            .hobbies__item-description {
+                top: 0;
+            }
+        }
+    }
+
+    @media (max-width: 800px) {
+        grid-template-areas: 
+            "child-1 child-1 child-1 child-1"
+            "child-2 child-2 child-2 child-2"
+            "child-3 child-3 child-4 child-4"
+            "child-3 child-3 child-4 child-4"
+            "child-5 child-5 child-5 child-5"
+            "child-6 child-6 child-6 child-6";
+        row-gap: var(--p-m-2);
+        column-gap: var(--p-m-2);
+
+        &__item {
+            &-description {
+                p:nth-child(1) {
+                    font-size: var(--fs-7);
+                }
+            }
+        }
+    }
+}
