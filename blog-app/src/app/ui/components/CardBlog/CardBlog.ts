@@ -11,7 +11,7 @@ export class CardBlog {
   title = input('');
   text = input('');
   date = input(new Date());
-  image = input('/assets/images/blogs/image_blog.png');
+  image = input('./assets/images/blogs/image_blog.png');
   isBigCard = input(false);
 
   @Output() delete: EventEmitter<any> = new EventEmitter();
