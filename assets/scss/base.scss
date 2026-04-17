@@ -137,3 +137,7 @@ main {
 .order-2 {
     order: 2;
 }
+
+[hidden] { 
+    display: none !important;
+}
