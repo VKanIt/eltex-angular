@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, signal, computed } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { CardBlog } from '../../components/CardBlog/CardBlog';
+import { CardBlog } from '../../components/card-blog/card-blog';
 
 @Component({
   selector: 'app-index',

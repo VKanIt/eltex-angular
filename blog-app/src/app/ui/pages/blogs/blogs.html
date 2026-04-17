@@ -19,7 +19,7 @@
         
         <div class="card-blog-list">
             @for (item of blogs(); track item.id) {
-                <div class="card-blog-min blog-layout">
+                <div class="card-blog-min">
                     <app-card-blog 
                         [title]="item.title"
                         [text]="item.text"

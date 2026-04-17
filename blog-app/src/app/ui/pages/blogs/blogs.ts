@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 
 import { MatDialog } from '@angular/material/dialog';
-import { AddBlogModal } from '../../components/modals/AddBlogModal/AddBlogModal';
-import { StatisticBlogsModal } from '../../components/modals/StatisticBlogsModal/StatisticBlogsModal';
-import { CardBlog } from '../../components/CardBlog/CardBlog';
+import { AddBlogModal } from '../../components/modals/add-blog-modal/add-blog-modal';
+import { StatisticBlogsModal } from '../../components/modals/statistic-blogs-modal/statistic-blogs-modal';
+import { CardBlog } from '../../components/card-blog/card-blog';
 
 @Component({
   selector: 'app-blogs',
