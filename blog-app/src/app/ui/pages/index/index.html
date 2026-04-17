@@ -27,7 +27,7 @@
     <section class="mb-6">
         <div class="card-blog-list">
              @for (item of blogsLimit(); track item.id) {
-                <div class="card-blog blog-layout mb-3">
+                <div class="card-blog mb-3">
                     <app-card-blog 
                         [title]="item.title"
                         [text]="item.text"

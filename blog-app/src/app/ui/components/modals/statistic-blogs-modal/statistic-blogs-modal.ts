@@ -4,8 +4,8 @@ import { MatDialogContent, MatDialogRef, MAT_DIALOG_DATA } from '@angular/materi
 @Component({
   selector: 'app-statistic-blogs-modal',
   imports: [MatDialogContent],
-  templateUrl: 'StatisticBlogsModal.html',
-  styleUrl: 'StatisticBlogsModal.scss',
+  templateUrl: 'statistic-blogs-modal.html',
+  styleUrl: 'statistic-blogs-modal.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StatisticBlogsModal { 

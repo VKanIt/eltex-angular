@@ -4,8 +4,8 @@ import { MatDialogRef, MatDialogContent } from '@angular/material/dialog';
 @Component({
   selector: 'add-blog-modal',
   imports: [MatDialogContent],
-  templateUrl: 'AddBlogModal.html',
-  styleUrl: 'AddBlogModal.scss',
+  templateUrl: 'add-blog-modal.html',
+  styleUrl: 'add-blog-modal.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddBlogModal { 

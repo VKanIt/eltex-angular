@@ -3,8 +3,8 @@ import { ChangeDetectionStrategy, Component, EventEmitter, input, Output } from 
 @Component({
   selector: 'app-card-blog',
   imports: [],
-  templateUrl: 'CardBlog.html',
-  styleUrl: 'CardBlog.scss',
+  templateUrl: 'card-blog.html',
+  styleUrl: 'card-blog.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardBlog {
