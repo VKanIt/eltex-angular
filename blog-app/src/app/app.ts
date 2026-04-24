@@ -13,8 +13,8 @@ import { MatProgressBar } from '@angular/material/progress-bar';
 })
 export class App {
   private readonly router = inject(Router);
-  isNavigating = signal(false);
-  value = signal(0);
+  protected isNavigating = signal(false);
+  protected value = signal(0);
 
   constructor() {
     this.router.events.subscribe((event: Event) => {

@@ -10,7 +10,7 @@ import { CardBlog } from '../../components/card-blog/card-blog';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Index { 
-  blogs = signal([
+  protected blogs = signal([
     {
         id: 1,
         date: new Date(),
@@ -43,7 +43,7 @@ export class Index {
     }
   ] as any[]);
 
-  blogsLimit = computed(() => {
+  protected blogsLimit = computed(() => {
     return this.blogs().slice(0, 2);
   });
 }

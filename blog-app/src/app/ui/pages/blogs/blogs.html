@@ -18,13 +18,14 @@
         </div>
         
         <div class="card-blog-list">
-            @for (item of blogs(); track item.id) {
+            @for (item of blogsLimit(); track item.id) {
                 <div class="card-blog-min">
                     <app-card-blog 
                         [title]="item.title"
                         [text]="item.text"
                         [date]="item.date"
                         (delete)="deleteBlog($index)"
+                        (edit)="openModalEditBlog($index, $event)"
                     />
                 </div>
             } @empty {
@@ -33,9 +34,14 @@
                 </div>
             }
         </div>
-
-        <div class="content-center">
-            <button class="btn btn-outline btn-more">
+        <div
+            class="content-center"
+            [hidden]="blogs().length <= blogsLimit().length"
+        >
+            <button 
+                class="btn btn-outline"
+                (click)="showMore()"
+            >
                 Показать еще
             </button>    
         </div>

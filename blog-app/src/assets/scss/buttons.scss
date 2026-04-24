@@ -73,28 +73,27 @@ button, a {
         width: 100%;
     }
 
-    &.btn-del {
+    &.blog {
         border-radius: var(--border-radius);
-        background: var(--bs-invalid);
         color: #fff;
         padding: var(--p-m-1);
         width: 40px;
         height: 40px;
 
+        &:first-child {
+            margin-right: var(--p-m-1);
+        }
+
         svg {
             fill: #fff;
         }
-    }
 
-    &.blog {
-        position: absolute;
-        right: 0;
-        top: 0;
-        margin-right: var(--p-m-1);
-        margin-top: var(--p-m-1);
-    }
-}
+        &-del {
+            background: var(--bs-invalid);
+        }
 
-.btn-more {
-    display: none;
+        &-edit {
+            background: var(--bs-success);
+        }
+    }
 }

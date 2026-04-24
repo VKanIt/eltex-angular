@@ -15,8 +15,16 @@ export class CardBlog {
   isBigCard = input(false);
 
   @Output() delete: EventEmitter<any> = new EventEmitter();
+  @Output() edit: EventEmitter<any> = new EventEmitter();
 
   deleteBlog() {
     this.delete.emit();
+  }
+
+  editBlog() {
+    this.edit.emit({
+      title: this.title(),
+      text: this.text()
+    });
   }
 }

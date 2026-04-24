@@ -1,14 +1,25 @@
 <article>
     @if (!isBigCard()) { 
-        <button
-            class="btn-icon btn-del blog"
-            title="Удалить статью"
-            (click)="deleteBlog()"
-        >
-            <svg>
-                <use xlink:href="./assets/sprite-svg/trash.svg#trash" />
-            </svg>
-        </button>
+        <div class="blog-setting">
+            <button
+                class="btn-icon blog blog-edit"
+                title="Редактировать статью"
+                (click)="editBlog()"
+            >
+                <svg>
+                    <use xlink:href="./assets/sprite-svg/edit.svg#edit" />
+                </svg>
+            </button>
+            <button
+                class="btn-icon blog blog-del"
+                title="Удалить статью"
+                (click)="deleteBlog()"
+            >
+                <svg>
+                    <use xlink:href="./assets/sprite-svg/trash.svg#trash" />
+                </svg>
+            </button>
+        </div>
     }
     <div [class]="isBigCard() ? 'card-blog__image order-2' : 'card-blog-min__image'">
         <img
