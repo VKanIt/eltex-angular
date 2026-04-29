@@ -13,6 +13,7 @@
             <button
                 class="btn-icon blog blog-del"
                 title="Удалить статью"
+                [disabled]="blogsRepository.isDisabled()"
                 (click)="deleteBlog()"
             >
                 <svg>
@@ -21,27 +22,39 @@
             </button>
         </div>
     }
-    <div [class]="isBigCard() ? 'card-blog__image order-2' : 'card-blog-min__image'">
+    <div 
+        [class]="{
+            'card-blog__image' : isBigCard(),
+            'order-2' : isBigCard(),
+            'card-blog-min__image' : !isBigCard()
+        }"
+    >
         <img
-            [src]="image()"
+            [src]="blog().image??'./assets/images/blogs/image_blog.png'"
             alt="blog-1"
         >
     </div>
-    <div [class]="isBigCard() ? 'card-blog__content order-1' : 'card-blog-min__bottom'">
+    <div 
+        [class]="{
+            'card-blog__content' : isBigCard(),
+            'order-1' : isBigCard(),
+            'card-blog-min__bottom' : !isBigCard()
+        }"
+    >
         <div [class]="{'order-2' : isBigCard()}">
             <p 
-                class="title"
+                class="title text-hidden"
                 [class]="{'card-blog__content-title' : isBigCard()}"
             >
-                {{ title() }}
+                {{ blog().title }}
             </p>
-            <p class="text-hidden description">{{ text() }}</p>
+            <p class="text-hidden description">{{ blog().text }}</p>
         </div>
         <time
             [class]="{'order-1' : isBigCard()}"
-            [dateTime]="date().getFullYear() + '-' + date().getMonth() + '-' + date().getDate()"
+            [dateTime]="blog().date.getFullYear() + '-' + blog().date.getMonth() + '-' + blog().date.getDate()"
         >
-            {{ date().toLocaleString('ru', {year: "numeric", month: "long", day: "numeric"}) }}
+            {{ blog().date.toLocaleString('ru', {year: "numeric", month: "long", day: "numeric"}) }}
         </time>
     </div>
 </article>

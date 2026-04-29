@@ -1,0 +1,59 @@
+:host {
+  display: block;
+}
+
+.hobbies {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    row-gap: var(--p-m-3);
+    column-gap: var(--p-m-3);
+    grid-template-areas: 
+        "child-1 child-1 child-2 child-2"
+        "child-3 child-4 child-5 child-5"
+        "child-3 child-4 child-6 child-6";
+    
+    
+    &__layout {
+        h2 {
+            margin-bottom: 0;
+        }
+
+        &:nth-child(1) {
+            align-self: end;
+            grid-area: child-1;
+        }
+
+        &:nth-child(2) {
+            align-self: end;
+            grid-area: child-2;
+        }
+
+        &:nth-child(3) {
+            grid-area: child-3;
+        }
+
+        &:nth-child(4) {
+            grid-area: child-4;
+        }
+
+        &:nth-child(5) {
+            grid-area: child-5;
+        }
+
+        &:nth-child(6) {
+            grid-area: child-6;
+        }
+    }
+
+    @media (max-width: 800px) {
+        grid-template-areas: 
+            "child-1 child-1 child-1 child-1"
+            "child-2 child-2 child-2 child-2"
+            "child-3 child-3 child-4 child-4"
+            "child-3 child-3 child-4 child-4"
+            "child-5 child-5 child-5 child-5"
+            "child-6 child-6 child-6 child-6";
+        row-gap: var(--p-m-2);
+        column-gap: var(--p-m-2);
+    }
+}

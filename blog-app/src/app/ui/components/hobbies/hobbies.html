@@ -1,0 +1,21 @@
+<section class="hobbies">
+    <div class="hobbies__layout">
+        <h2>
+            Хобби-проекты
+        </h2>
+    </div>
+    <div class="hobbies__layout">
+        <p>
+            Организовал две конференции "Web Technologies Conference" в своем городе
+        </p>
+    </div>
+    @for (item of hobbies; track $index) {
+        <app-hobby
+            class="hobbies__layout"
+            [src]="item.src"
+            [alt]="'hobby_' + $index"
+            [title]="item.title"
+            [description]="item.description"
+        />
+    }
+</section>

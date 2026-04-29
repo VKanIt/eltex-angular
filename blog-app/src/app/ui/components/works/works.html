@@ -1,0 +1,22 @@
+<section class="works">
+    <div class="works__title">
+        <h2>
+            Моя работа
+        </h2>
+        <p>
+            Старший веб-разработчик, ООО "DigitalStudio" (2022 — по настоящее время). Руководство командой из 4 разработчиков, разработка архитектуры фронтенда, менторство младших специалистов, внедрение новых технологий в рабочий процесс.
+        </p>
+    </div>
+    <div class="works__list">
+        @for (item of works; track $index) {
+            <app-work 
+                class="works__list-layout"
+                [src]="'./assets/images/company_logo/' + item.src"
+                [alt]="item.alt"
+                [title]="item.title"
+                [subtitle]="item.subtitle"
+                [description]="item.description"
+            />
+        }
+    </div>
+</section>

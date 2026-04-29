@@ -1,0 +1,13 @@
+<section>
+    <h2 id="skills">
+        Мои навыки
+    </h2>
+    <div class="skills">
+        @for (item of skills; track item) {
+            <app-skill
+                class="skills__child" 
+                [title]="item"
+            />
+        }
+    </div>
+</section>

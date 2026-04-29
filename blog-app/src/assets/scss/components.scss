@@ -1,10 +1,6 @@
 .card-blog-list {
     display: flex;
     flex-wrap: wrap;
-    
-    @media (min-width: 801px) {
-        margin-inline: -1rem;
-    }
 }
 
 .card-blog {
@@ -91,8 +87,10 @@
     }
 
     @media (max-width: 800px) {
-        height: 100%;
-        flex-direction: column;
+        article {
+            height: 100%;
+            flex-direction: column;
+        }
 
         &__content {
             padding: var(--p-m-4);
@@ -244,8 +242,9 @@
 }
 
 .loader {
-    display: none;
+    display: flex;
     justify-content: center;
+    margin-block: var(--p-m-2);
 
     &:after {
         content: '';

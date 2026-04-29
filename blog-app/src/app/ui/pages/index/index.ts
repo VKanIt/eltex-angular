@@ -1,49 +1,27 @@
-import { ChangeDetectionStrategy, Component, signal, computed } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CardBlog } from '../../components/card-blog/card-blog';
+import { MainFirstPage } from '../../components/main-first-page/main-first-page';
+import { Skills } from "../../components/skills/skills";
+import { Works } from "../../components/works/works";
+import { Hobbies } from "../../components/hobbies/hobbies";
+import { BLOGS_STORE } from '../../../services/blogs-store/blogs-store.token';
+import { BLOGS_REPOSITORY } from '../../../services/blogs-repository/blogs-repository.token';
 
 @Component({
   selector: 'app-index',
-  imports: [RouterLink, CardBlog],
+  imports: [RouterLink, CardBlog, MainFirstPage, Skills, Works, Hobbies],
   templateUrl: 'index.html',
   styleUrl: 'index.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Index { 
-  protected blogs = signal([
-    {
-        id: 1,
-        date: new Date(),
-        title: 'test1',
-        text: 'test1'
-    },
-    {
-        id: 2,
-        date: new Date(),
-        title: 'test2',
-        text: 'test2'
-    },
-    {
-        id: 3,
-        date: new Date(),
-        title: 'test2',
-        text: 'test2'
-    },
-    {
-        id: 4,
-        date: new Date(),
-        title: 'test2',
-        text: 'test2'
-    },
-    {
-        id: 5,
-        date: new Date(),
-        title: 'test2',
-        text: 'test2'
-    }
-  ] as any[]);
+export class Index {
+  //-----INJECTS-----\\
+  protected blogsStore = inject(BLOGS_STORE);
+  protected blogsRepository = inject(BLOGS_REPOSITORY);
 
-  protected blogsLimit = computed(() => {
-    return this.blogs().slice(0, 2);
-  });
+  //-----METHODS-----\\
+  constructor() {
+    this.blogsRepository.getBlogs(false, 2);
+  }
 }

@@ -1,0 +1,35 @@
+:host {
+  display: block;
+}
+
+.works {
+    display: flex;
+    flex-wrap: wrap;
+
+    &__list {
+        &-layout {
+            &:not(:nth-child(1)) {
+                padding-top: var(--p-m-2);
+            }
+        }
+    }
+
+    &__title, &__list {
+        width: 50%;
+    }
+
+    &__title {
+        padding-right: var(--p-m-2);
+    }
+
+    @media (max-width: 1023px) {
+        &__title, &__list {
+            width: 100%;
+            padding: 0;
+        }
+
+        &__title {
+            margin-bottom: var(--p-m-4);
+        }
+    }
+}

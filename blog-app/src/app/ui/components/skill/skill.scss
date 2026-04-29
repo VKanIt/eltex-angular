@@ -1,0 +1,36 @@
+:host {
+    display: contents;
+
+    @media (max-width: 800px) {
+        display: block;
+        width: 100%;
+    }
+}
+
+.skills__layout {
+    width: 33.333%;
+
+    &-item {
+        p {
+            font-size: var(--fs-6)
+        }
+
+        &::after {
+            content: '';
+            display: block;
+            height: 2px;
+            width: 100%;
+            background-color: var(--bs-light-gray);
+            margin-top: var(--p-m-3);
+        }
+    }
+
+    @media (min-width: 801px) {
+        padding-inline: var(--p-m-2);
+    }
+
+    @media (max-width: 800px) {
+        width: 100%;
+        padding-inline: 0;
+    }
+}

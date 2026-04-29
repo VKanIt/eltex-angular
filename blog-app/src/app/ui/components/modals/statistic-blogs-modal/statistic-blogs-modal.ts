@@ -9,9 +9,11 @@ import { MatDialogContent, MatDialogRef, MAT_DIALOG_DATA } from '@angular/materi
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StatisticBlogsModal { 
+  //-----INJECTS-----\\
   protected readonly dialogRef = inject(MatDialogRef);
   protected data = inject<{count: number}>(MAT_DIALOG_DATA);
   
+  //-----METHODS-----\\
   protected closeDialog() {
     this.dialogRef.close();
   }
