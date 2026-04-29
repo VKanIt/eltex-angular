@@ -55,8 +55,12 @@ button, a {
             background-color: var(--bs-green);
         }
     }
+}
 
-    &:disabled {
+button:disabled {
+    opacity: 0.6;
+    
+    &:hover {
         opacity: 0.6;
     }
 }
