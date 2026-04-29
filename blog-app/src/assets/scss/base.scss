@@ -142,3 +142,9 @@ main {
 [hidden] { 
     display: none !important;
 }
+
+.m-wrap {
+    @media (min-width: 801px) {
+        margin-inline: -1rem;
+    }
+}

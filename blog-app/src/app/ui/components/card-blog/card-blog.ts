@@ -1,4 +1,6 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, inject, input, Output } from '@angular/core';
+import { Blog } from '../../../types/Blog';
+import { BLOGS_REPOSITORY } from '../../../services/blogs-repository/blogs-repository.token';
 
 @Component({
   selector: 'app-card-blog',
@@ -7,24 +9,34 @@ import { ChangeDetectionStrategy, Component, EventEmitter, input, Output } from 
   styleUrl: 'card-blog.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CardBlog {
-  title = input('');
-  text = input('');
-  date = input(new Date());
-  image = input('./assets/images/blogs/image_blog.png');
-  isBigCard = input(false);
 
+export class CardBlog {
+  //-----INJECTS-----\\
+  protected blogsRepository = inject(BLOGS_REPOSITORY);
+  
+  //-----INPUTS-----\\
+  public blog = input<Blog>({
+    id: null,
+    date: new Date(),
+    title: '',
+    text: '',
+    image: null
+  });
+  public isBigCard = input(false);
+
+  //-----EMITS-----\\
   @Output() delete: EventEmitter<any> = new EventEmitter();
   @Output() edit: EventEmitter<any> = new EventEmitter();
 
-  deleteBlog() {
+  //-----METHODS-----\\
+  protected deleteBlog() {
     this.delete.emit();
   }
 
-  editBlog() {
+  protected editBlog() {
     this.edit.emit({
-      title: this.title(),
-      text: this.text()
+      title: this.blog().title,
+      text: this.blog().text
     });
   }
 }

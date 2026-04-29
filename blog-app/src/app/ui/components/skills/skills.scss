@@ -1,0 +1,22 @@
+:host {
+  display: block;
+}
+
+.skills {
+    display: flex;
+    flex-wrap: wrap;
+
+    @media (min-width: 801px) {
+        margin-inline: -1rem;
+    }
+
+    @media (max-width: 800px) {
+        margin-inline: 0;
+
+        &__child {
+            &:not(:nth-last-child(1)) {
+                padding-bottom: var(--p-m-4);
+            }
+        }
+    }
+}

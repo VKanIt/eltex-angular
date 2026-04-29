@@ -1,5 +1,7 @@
 <div class="modal-header">
-    <p class="title">Добавить статью</p>
+    <p class="title">
+        {{ data.isEdit ? 'Редактировать' : 'Добавить' }} статью
+    </p>
     <button 
         class="btn-close"
         title="Закрыть"
@@ -14,14 +16,15 @@
     <form
         class="form-add-blog"
         novalidate
-        [formGroup]="addBlogForm"
-        (submit)="addBlog($event)"
+        [formGroup]="putBlogForm"
+        (submit)="putBlog($event)"
     >
         <label class="input-wrapper">
             <span>Заголовок</span>
+            @let isInvalidTitle = validation.isInvalid('title');
             <input
                 class="input-box"
-                [class]="{'invalid' : param('title')?.invalid && (param('title')?.touched || param('title')?.dirty)}"
+                [class]="{'invalid' : isInvalidTitle}"
                 type="input"
                 name="title"
                 formControlName="title"
@@ -29,16 +32,17 @@
             />
             <span
                 class="invalid-message"
-                [hidden]="!(param('title')?.invalid && (param('title')?.touched || param('title')?.dirty))"
+                [hidden]="!isInvalidTitle"
             >
-                {{ param('title')?.hasError('required') ? 'Введите заголовок' : 'Длина заголовка должна быть не меньше 25 символов' }}
+                {{ validation.getErrorMessage('title', 'заголовок') }}
             </span>
         </label>
         <label class="input-wrapper">
             <span>Текст статьи</span>
+            @let isInvalidText = validation.isInvalid('text');
             <textarea
                 class="input-box"
-                [class]="{'invalid' :param('text')?.invalid && (param('text')?.touched || param('text')?.dirty)}"
+                [class]="{'invalid' : isInvalidText}"
                 name="text"
                 placeholder="Введите текст..."
                 rows="5"
@@ -46,17 +50,18 @@
             ></textarea>
             <span 
                 class="invalid-message"
-                [hidden]="!(param('text')?.invalid && (param('text')?.touched || param('text')?.dirty))"
+                [hidden]="!isInvalidText"
             >
-                Введите текст
+                {{ validation.getErrorMessage('title', 'текст') }}
             </span>
         </label>
         <div class="content-center">
             <button
                 class="btn" 
                 type="submit"
+                [disabled]="data.blogsRepository.isDisabled()"
             >
-                Добавить
+                {{ data.isEdit ? 'Сохранить' : 'Добавить' }}
             </button>
         </div>
     </form>

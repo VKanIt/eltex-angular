@@ -17,36 +17,41 @@
             </div>
         </div>
         
-        <div class="card-blog-list">
-            @for (item of blogsLimit(); track item.id) {
+        <div class="card-blog-list m-wrap">
+            @for (item of blogsStore.blogs(); track $index) {
                 <div class="card-blog-min">
                     <app-card-blog 
-                        [title]="item.title"
-                        [text]="item.text"
-                        [date]="item.date"
+                        [blog]="item"
                         (delete)="deleteBlog($index)"
                         (edit)="openModalEditBlog($index, $event)"
                     />
                 </div>
             } @empty {
-                <div class="blogs-empty">
+                <div
+                    class="blogs-empty"
+                    [hidden]="!blogsRepository.isLoad()"
+                >
                     Нет статей
                 </div>
             }
         </div>
         <div
             class="content-center"
-            [hidden]="blogs().length <= blogsLimit().length"
+            [hidden]="blogsStore.count <= blogsStore.limitActive"
         >
             <button 
                 class="btn btn-outline"
-                (click)="showMore()"
+                [hidden]="!blogsRepository.isLoad()"
+                (click)="blogsRepository.getBlogs(true)"
             >
                 Показать еще
             </button>    
         </div>
 
-        <div class="loader"></div>
+        <div 
+            class="loader"
+            [hidden]="blogsRepository.isLoad()"
+        ></div>
     </section>
 
     <div class="admin-panel">
