@@ -20,12 +20,8 @@ button, a {
     color: var(--bs-green);
     text-decoration: none;
 
-    svg {
-        margin-top: 0.1rem;
+    .mat-icon {
         margin-left: 1rem;
-        fill: currentColor;
-        height: 20px;
-        width: 20px;
     }
 }
 

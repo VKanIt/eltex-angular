@@ -3,9 +3,11 @@ import { Blog } from "../../types/Blog";
 
 export interface IBlogsStore {
     blogs: WritableSignal<Blog[]>
-    count: number
+    count: WritableSignal<number>
     limit: number
-    limitActive: number
+    limitActive: WritableSignal<number>
+    isLoad: WritableSignal<boolean>
+    isDisabled: WritableSignal<boolean>
 
     updateBlogs(blogs: Blog[]): void
 }

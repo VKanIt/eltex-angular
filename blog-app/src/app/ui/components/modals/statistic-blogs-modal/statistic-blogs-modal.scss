@@ -23,6 +23,7 @@
         &-title {
             font-size: var(--fs-7);
             margin-bottom: var(--p-m-1);
+            word-break: unset;
         }
 
         &-number {

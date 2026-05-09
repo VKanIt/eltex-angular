@@ -3,7 +3,6 @@ import { IValidation } from "./validation.interface";
 import { FormGroup } from "@angular/forms";
 
 @Injectable()
-
 export class Validation implements IValidation {
     //-----VARIABLES-----\\
     private form: FormGroup = new FormGroup({});
@@ -13,15 +12,13 @@ export class Validation implements IValidation {
         this.form = form;
     }
 
-    public isInvalid(controlName: string) : boolean
-    {
+    public isInvalid(controlName: string): boolean {
         const control = this.form.get(controlName);
 
         return Boolean(control?.invalid && (control?.touched || control?.dirty));
     }
 
-    public getErrorMessage(controlName: string, nameElement: string|null = null) : string
-    {
+    public getErrorMessage(controlName: string, nameElement: string|null = null): string {
         const control = this.form.get(controlName);
         const errors = control?.errors;
 
@@ -35,14 +32,20 @@ export class Validation implements IValidation {
         return message;
     }
 
-    private errorMessage(errorKey: string, errorData: any, nameElement: string|null = null) {
+    private errorMessage(errorKey: string, errorData: any, nameElement: string|null = null): string {
         switch(errorKey) {
             case 'required':
-                return 'Введите ' + (nameElement??'значение');
+                return 'Введите ' + (nameElement ?? 'значение');
             
             case 'minlength':
                 return `Нужно еще ${errorData.requiredLength - errorData.actualLength} символов`;
-                
+            
+            case 'max':
+                return `Значение больше ${errorData.max}`;
+
+            case 'min':
+                return `Значение меньше ${errorData.min}`;
+            
             default:
                 return 'Ошибка при заполнении поля';
         }

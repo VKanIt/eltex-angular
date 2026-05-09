@@ -1,9 +1,10 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatDialogContent, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatIcon } from "@angular/material/icon";
 
 @Component({
   selector: 'app-statistic-blogs-modal',
-  imports: [MatDialogContent],
+  imports: [MatDialogContent, MatIcon],
   templateUrl: 'statistic-blogs-modal.html',
   styleUrl: 'statistic-blogs-modal.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -11,7 +12,10 @@ import { MatDialogContent, MatDialogRef, MAT_DIALOG_DATA } from '@angular/materi
 export class StatisticBlogsModal { 
   //-----INJECTS-----\\
   protected readonly dialogRef = inject(MatDialogRef);
-  protected data = inject<{count: number}>(MAT_DIALOG_DATA);
+  protected data = inject<{
+    countBlogs: number,
+    countComments: number
+  }>(MAT_DIALOG_DATA);
   
   //-----METHODS-----\\
   protected closeDialog() {

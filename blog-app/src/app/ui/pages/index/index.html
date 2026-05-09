@@ -2,10 +2,10 @@
     <app-main-first-page class="mb-6" />
     <section 
         class="mb-6"
-        [hidden]="blogsStore.count === 0"
+        [hidden]="count() === 0"
     >
         <div class="card-blog-list">
-             @for (item of blogsStore.blogs(); track $index) {
+             @for (item of blogs(); track $index) {
                 <div class="card-blog mb-3">
                     <app-card-blog 
                         [blog]="item"
@@ -17,7 +17,7 @@
 
         <div 
             class="content-center"
-            [hidden]="!blogsRepository.isLoad() || blogsStore.count === 0"
+            [hidden]="!isLoad() || count() === 0"
         >
             <a
                 routerLink="/blogs/"
@@ -29,7 +29,7 @@
     </section>
     <div 
         class="loader"
-        [hidden]="blogsRepository.isLoad()"
+        [hidden]="isLoad()"
     ></div>
 
     <app-skills class="mb-6" />

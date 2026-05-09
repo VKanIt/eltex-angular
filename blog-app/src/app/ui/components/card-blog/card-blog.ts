@@ -1,26 +1,31 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, inject, input, Output } from '@angular/core';
 import { Blog } from '../../../types/Blog';
-import { BLOGS_REPOSITORY } from '../../../services/blogs-repository/blogs-repository.token';
+import { BLOGS_STORE } from '../../../services/blogs-store/blogs-store.token';
+import { RouterLink } from '@angular/router';
+import { MatIcon } from "@angular/material/icon";
 
 @Component({
   selector: 'app-card-blog',
-  imports: [],
+  imports: [RouterLink, MatIcon],
   templateUrl: 'card-blog.html',
   styleUrl: 'card-blog.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-
 export class CardBlog {
   //-----INJECTS-----\\
-  protected blogsRepository = inject(BLOGS_REPOSITORY);
+  private blogsStore = inject(BLOGS_STORE);
+
+  //-----SIGNALS-----\\
+  protected isDisabled = this.blogsStore.isDisabled;
   
   //-----INPUTS-----\\
   public blog = input<Blog>({
-    id: null,
+    id: 1,
     date: new Date(),
     title: '',
     text: '',
-    image: null
+    image: null,
+    rating: 0,
   });
   public isBigCard = input(false);
 
@@ -29,11 +34,17 @@ export class CardBlog {
   @Output() edit: EventEmitter<any> = new EventEmitter();
 
   //-----METHODS-----\\
-  protected deleteBlog() {
+  protected deleteBlog(e: any) {
+    e.stopPropagation();
+    e.preventDefault();
+
     this.delete.emit();
   }
 
-  protected editBlog() {
+  protected editBlog(e: any) {
+    e.stopPropagation();
+    e.preventDefault();
+
     this.edit.emit({
       title: this.blog().title,
       text: this.blog().text

@@ -5,9 +5,7 @@
         title="Закрыть"
         (click)="closeDialog()"
     >
-        <svg>
-            <use xlink:href="./assets/sprite-svg/close.svg#close" />
-        </svg>
+        <mat-icon>close</mat-icon>
     </button>
 </div>
 <mat-dialog-content>
@@ -18,7 +16,7 @@
                     Всего статей:
                 </p>
                 <p class="block-statistic__item-number">
-                    {{ data.count }}
+                    {{ data.countBlogs }}
                 </p>
             </div>
         </div>
@@ -28,7 +26,7 @@
                     Комментарии:
                 </p>
                 <p class="block-statistic__item-number">
-                    0
+                    {{ data.countComments }}
                 </p>
             </div>
         </div>
