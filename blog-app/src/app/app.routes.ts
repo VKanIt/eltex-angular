@@ -9,6 +9,20 @@ export const routes: Routes = [
     {
         path: 'blogs',
         loadComponent: () => import('./ui/pages/blogs/blogs').then(c => c.Blogs),
-        title: 'Блог'
+        children: [
+            {
+                path: '',
+                title: 'Блог',
+                loadComponent: () => import('./ui/pages/blogs-list/blogs-list').then(c => c.BlogsList),
+            },
+            {
+                path: ':id',
+                loadComponent: () => import('./ui/pages/blog/blog').then(c => c.Blog),
+            }
+        ]
     },
+    { 
+        path: '**',
+        loadComponent: () => import('./ui/pages/page-not-found/page-not-found').then(c => c.PageNotFound),
+    }
 ];

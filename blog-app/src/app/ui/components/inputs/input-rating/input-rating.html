@@ -1,0 +1,25 @@
+<div class="rating input-wrapper">
+    <span>Рейтинг:</span>
+    @let isInvalidRating = validation.isInvalid('rating');
+    <input
+        class="input-box"
+        type="text"
+        [class]="{'invalid' : isInvalidRating}"
+        [formControl]="ratingFormControl()"
+    >
+    <button
+        matIconButton
+        class="btn-rating"
+        [title]="ratingFormControl().disabled ? 'Изменить' : 'Сохранить'"
+        [disabled]="isDisabled()"
+        (click)="editRating()"
+    >
+        <mat-icon>{{ ratingFormControl().disabled ? 'edit' : 'save' }}</mat-icon>
+    </button>
+    <span
+        class="invalid-message error-rating"
+        [hidden]="!isInvalidRating"
+    >
+        {{ validation.getErrorMessage('rating', 'рейтинг') }}
+    </span>
+</div>

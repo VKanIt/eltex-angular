@@ -7,9 +7,7 @@
         title="Закрыть"
         (click)="closeDialog()"
     >
-        <svg>
-            <use xlink:href="./assets/sprite-svg/close.svg#close" />
-        </svg>
+        <mat-icon>close</mat-icon>
     </button>
 </div>
 <mat-dialog-content>
@@ -59,7 +57,7 @@
             <button
                 class="btn" 
                 type="submit"
-                [disabled]="data.blogsRepository.isDisabled()"
+                [disabled]="data.isDisabled()"
             >
                 {{ data.isEdit ? 'Сохранить' : 'Добавить' }}
             </button>

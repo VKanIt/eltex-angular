@@ -1,0 +1,21 @@
+<mat-card 
+    appearance="outlined"
+    class="card-comment"
+>
+  <mat-card-header class="mb-05">
+    <mat-card-title class="text-hidden">{{ comment().name }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p class="text-hidden">{{ comment().text }}</p>
+  </mat-card-content>
+  <mat-card-footer class="card-footer">
+    <time [dateTime]="comment().date.getFullYear() + '-' + comment().date.getMonth() + '-' + comment().date.getDate()">
+        {{ comment().date.toLocaleString('ru', {year: "numeric", month: "long", day: "numeric"}) }}
+    </time>
+    <app-input-rating
+      [initRating]="comment().rating"
+      [isDisabled]="isDisabled()"
+      (edit)="editRating($event)"
+    />
+  </mat-card-footer>
+</mat-card>

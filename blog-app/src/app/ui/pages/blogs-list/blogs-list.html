@@ -1,0 +1,71 @@
+<section>
+    <div class="blogs-first-screen mb-6">
+        <div class="blogs-first-screen__title">
+            <h1 id="head">
+                Мои статьи
+            </h1>
+            <p>
+                В статьях я рассказываю о своих интересных проектах, полезных советах и решения проблем, которыми я сталкивался при создании того или ониго проекта.
+            </p>
+        </div>
+        <div class="blogs-first-screen__image">
+            <img
+                src="./assets/images/selection.png"
+                alt="selection"
+            >
+        </div>
+    </div>
+    
+    <div class="card-blog-list m-wrap">
+        @for (item of blogs(); track $index) {
+            <div class="card-blog-min">
+                <app-card-blog 
+                    [blog]="item"
+                    (delete)="deleteBlog($index)"
+                    (edit)="openModalEditBlog($index, $event)"
+                />
+            </div>
+        } @empty {
+            <div
+                class="for-empty"
+                [hidden]="!isLoad()"
+            >
+                Нет статей
+            </div>
+        }
+    </div>
+    <div
+        class="content-center"
+        [hidden]="count() <= limitActive()"
+    >
+        <button 
+            class="btn btn-outline"
+            [hidden]="!isLoad()"
+            (click)="getMore()"
+        >
+            Показать еще
+        </button>    
+    </div>
+
+    <div 
+        class="loader"
+        [hidden]="isLoad()"
+    ></div>
+</section>
+
+<div class="admin-panel">
+    <button
+        class="btn-icon text-green"
+        title="Добавить статью"
+        (click)="openModalAddBlog()"
+    >
+        <mat-icon>post_add</mat-icon>
+    </button>
+    <button
+        class="btn-icon text-green"
+        title="Показать статистику"
+        (click)="openModalStatisticBlogs()"
+    >
+        <mat-icon>query_stats</mat-icon>
+    </button>
+</div>

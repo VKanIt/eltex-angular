@@ -1,0 +1,47 @@
+:host {
+  display: block;
+}
+
+.rating {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  input {
+    margin-inline: var(--p-m-1);
+    border: 0;
+    font-size: var(--fs-6);
+    width: 40px;
+    outline: none;
+
+    &:not(:disabled) {
+      border-bottom: 1px solid var(--bs-gray);
+    }
+
+    &:disabled {
+      opacity: 1;
+    }
+  }
+
+  .btn-rating {
+    color: #fff;
+    background: var(--bs-success);
+
+    --mat-icon-button-state-layer-size: 30px;
+    
+    .mat-icon {
+      height: 100%;
+      width: 100%;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  .error-rating {
+    position: absolute;
+    top: -20px;
+    right: 0;
+  }
+}

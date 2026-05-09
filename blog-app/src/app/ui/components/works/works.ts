@@ -9,7 +9,7 @@ import { Work } from "../work/work";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Works { 
-  public works = [
+  protected works = [
     {
       src: 'webmasters.png',
       alt: 'webmasters',

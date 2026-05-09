@@ -1,0 +1,18 @@
+.card-footer {
+  padding: 16px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-comment {
+  height: 250px;
+  position: relative;
+
+  .text-hidden {
+    -webkit-line-clamp: 5;
+  }
+}

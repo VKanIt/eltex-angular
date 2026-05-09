@@ -20,6 +20,11 @@ export class Index {
   protected blogsStore = inject(BLOGS_STORE);
   protected blogsRepository = inject(BLOGS_REPOSITORY);
 
+  //-----SIGNALS------\\
+  protected count = this.blogsStore.count;
+  protected blogs = this.blogsStore.blogs;
+  protected isLoad = this.blogsStore.isLoad;
+
   //-----METHODS-----\\
   constructor() {
     this.blogsRepository.getBlogs(false, 2);

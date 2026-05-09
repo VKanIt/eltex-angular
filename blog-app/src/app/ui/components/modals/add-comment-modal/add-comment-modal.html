@@ -1,0 +1,54 @@
+<div class="modal-header">
+    <p class="title">
+        Добавить комментарий
+    </p>
+    <button 
+        matIconButton
+        title="Закрыть"
+        (click)="closeDialog()"
+    >
+        <mat-icon>close</mat-icon>
+    </button>
+</div>
+<mat-dialog-content>
+    <form
+        novalidate
+        [formGroup]="addCommentForm"
+        (submit)="addComment($event)"
+    >
+        <mat-form-field class="mb-05">
+            <mat-label>Имя</mat-label>
+            @let isInvalidName = validation.isInvalid('name');
+            <input 
+                type="text"
+                matInput
+                formControlName="name"
+            >
+            @if (isInvalidName) {
+                <mat-error class="invalid-message">{{ validation.getErrorMessage('name', 'имя') }}</mat-error>
+            }
+        </mat-form-field>
+        <mat-form-field class="mb-1">
+            <mat-label>Текст</mat-label>
+            @let isInvalidText = validation.isInvalid('text');
+            <textarea  
+                type="text"
+                matInput
+                formControlName="text"
+                rows="5"
+            ></textarea>
+            @if (isInvalidText) {
+                <mat-error class="invalid-message">{{ validation.getErrorMessage('text', 'текст') }}</mat-error>
+            }
+        </mat-form-field>
+        <div class="content-center">
+            <button 
+                matButton="filled"
+                type="submit"
+                [disabled]="data.isDisabled()"
+            >
+                Добавить
+            </button>
+        </div>
+    </form>
+</mat-dialog-content>
