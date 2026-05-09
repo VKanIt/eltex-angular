@@ -38,6 +38,22 @@
 
     --border-radius: 0.5rem;
 
+    --mat-form-field-filled-container-color: #e6e6e6;
+    --mat-form-field-filled-container-shape: var(--border-radius);
+
+    --mat-button-filled-container-color: var(--bs-green);
+    --mat-button-filled-label-text-color: #fff;
+    --mat-button-filled-container-shape: var(--border-radius);
+    --mat-sys-on-error-container: var(--bs-invalid);
+    --mat-sys-error: var(--bs-invalid);
+
+    --mat-card-outlined-container-shape: var(--border-radius);
+    --mat-card-outlined-outline-color: var(--bs-light-gray);
+
+    --mat-sys-title-large-font: 'Inter', sans-serif;
+    --mat-card-title-text-size: var(--fs-6);
+    --mat-card-title-text-weight: var(--fw-bold);
+
 
     font-family: 'Inter', sans-serif;
     font-size: 1rem;
@@ -73,6 +89,7 @@ h1, h2, .head-1 {
     line-height: 1.125;
     margin-bottom: 2rem;
     margin-top: 0;
+    word-break: break-word;
 }
 
 h1, .head-1 {
@@ -101,6 +118,7 @@ h2 {
 
 p {
     margin: 0;
+    word-break: break-word;
 }
 
 .bg-black {
@@ -119,12 +137,24 @@ main {
     margin-bottom: 3rem !important;
 }
 
+.mb-05 {
+    margin-bottom: 0.5rem !important;
+}
+
+.mb-1 {
+    margin-bottom: 1rem !important;
+}
+
 .text-hidden {
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    word-break: break-all;
+    word-break: break-word;
+}
+
+.text-green {
+    color: var(--bs-green);
 }
 
 .position-relative {
@@ -147,4 +177,13 @@ main {
     @media (min-width: 801px) {
         margin-inline: -1rem;
     }
+}
+
+.text-decoration-none {
+    text-decoration: none;
+}
+
+a {
+    text-decoration: none;
+    color: var(--bs-black);
 }
