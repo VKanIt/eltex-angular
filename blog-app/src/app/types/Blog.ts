@@ -1,8 +1,9 @@
 export type Blog = {
-    id: number,
+    id: string|number,
     date: Date,
     title: string,
     text: string,
     image: string|null,
     rating: number,
+    categoryId?: string|null
 }

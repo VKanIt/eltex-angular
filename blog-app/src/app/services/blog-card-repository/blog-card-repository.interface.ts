@@ -2,7 +2,7 @@ import { Observable } from "rxjs"
 import { Blog } from "../../types/Blog"
 import { Comment } from "../../types/Comment"
 
-export interface IBlogRepository {
+export interface IBlogCardRepository {
     getBlog(id: number): Observable<string>
     addComment(comment: Comment): Observable<Comment[]>
     updateRatingComment(commentId: number, newRating: number): Observable<Comment[]>

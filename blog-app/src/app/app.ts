@@ -10,6 +10,12 @@ import { BlogsRepository } from './services/blogs-repository/blogs-repository';
 import { STORAGE_SERVICE } from './services/storage-service/storage-service.token';
 import { StorageService } from './services/storage-service/storage-service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { environment } from '../environments/environment';
+import { BlogsRepositoryLc } from './services/blogs-repository/blog-repository-lc';
+import { BLOG_MAPPER } from './services/blog-mapper/blog-mapper.token';
+import { BlogMapper } from './services/blog-mapper/blog-mapper';
+import { CATEGORIES_REPOSITORY } from './services/categories-repository/categories-repository.token';
+import { CategoriesRepository } from './services/categories-repository/categories-repository';
 
 
 @Component({
@@ -19,8 +25,10 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   styleUrl: './app.scss',
   providers: [
     { provide: BLOGS_STORE, useClass: BlogsStore },
-    { provide: BLOGS_REPOSITORY, useClass: BlogsRepository },
-    { provide: STORAGE_SERVICE, useClass: StorageService }
+    { provide: BLOGS_REPOSITORY, useClass: environment.useServiceLc ? BlogsRepositoryLc : BlogsRepository },
+    { provide: STORAGE_SERVICE, useClass: StorageService },
+    { provide: BLOG_MAPPER, useClass: BlogMapper },
+    { provide: CATEGORIES_REPOSITORY, useClass: CategoriesRepository }
   ]
 })
 export class App {

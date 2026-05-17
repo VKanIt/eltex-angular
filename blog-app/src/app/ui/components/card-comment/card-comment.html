@@ -9,8 +9,8 @@
     <p class="text-hidden">{{ comment().text }}</p>
   </mat-card-content>
   <mat-card-footer class="card-footer">
-    <time [dateTime]="comment().date.getFullYear() + '-' + comment().date.getMonth() + '-' + comment().date.getDate()">
-        {{ comment().date.toLocaleString('ru', {year: "numeric", month: "long", day: "numeric"}) }}
+    <time [dateTime]="comment().date | date: 'dd-MM-y'">
+        {{ comment().date | date:'d MMMM y г.' }}
     </time>
     <app-input-rating
       [initRating]="comment().rating"

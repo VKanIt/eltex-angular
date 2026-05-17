@@ -26,6 +26,7 @@ export class CardBlog {
     text: '',
     image: null,
     rating: 0,
+    categoryId: null
   });
   public isBigCard = input(false);
 
@@ -47,7 +48,9 @@ export class CardBlog {
 
     this.edit.emit({
       title: this.blog().title,
-      text: this.blog().text
+      text: this.blog().text,
+      image: this.blog().image,
+      categoryId: this.blog().categoryId
     });
   }
 }

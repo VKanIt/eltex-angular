@@ -2,7 +2,7 @@ import { WritableSignal } from "@angular/core";
 import { Blog } from "../../types/Blog";
 import { Comment } from "../../types/Comment";
 
-export interface IBlogStore {
+export interface IBlogCardStore {
     blog: WritableSignal<Blog>
     comments: WritableSignal<Comment[]>
     countComments: WritableSignal<number>
