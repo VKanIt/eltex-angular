@@ -1,4 +1,5 @@
 export const environment = {
+    useServiceLc: false,
     production: false,
-    apiUrl: null
+    apiUrl: 'http://localhost:3000'
 };

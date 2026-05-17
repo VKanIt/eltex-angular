@@ -39,7 +39,7 @@ export class BlogsList {
   
   //-----METHODS-----\\
   constructor() {
-    if (this.enviroment.production) {
+    if (!this.enviroment.useServiceLc) {
       this.categoriesRepository.getCategories()
         .pipe(takeUntilDestroyed(this.destroyRef))
         .subscribe((data: Category[]) => {

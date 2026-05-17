@@ -24,7 +24,7 @@ import { BlogCardRepositoryLc } from '../../../services/blog-card-repository/blo
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     { provide: BLOG_CARD_STORE, useClass: BlogCardStore },
-    { provide: BLOG_CARD_REPOSITORY, useClass: environment.production ? BlogCardRepository : BlogCardRepositoryLc },
+    { provide: BLOG_CARD_REPOSITORY, useClass: environment.useServiceLc ? BlogCardRepositoryLc : BlogCardRepository },
   ]
 })
 export class Blog { 

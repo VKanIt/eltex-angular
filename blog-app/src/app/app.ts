@@ -25,7 +25,7 @@ import { CategoriesRepository } from './services/categories-repository/categorie
   styleUrl: './app.scss',
   providers: [
     { provide: BLOGS_STORE, useClass: BlogsStore },
-    { provide: BLOGS_REPOSITORY, useClass: environment.production ? BlogsRepository : BlogsRepositoryLc },
+    { provide: BLOGS_REPOSITORY, useClass: environment.useServiceLc ? BlogsRepositoryLc : BlogsRepository },
     { provide: STORAGE_SERVICE, useClass: StorageService },
     { provide: BLOG_MAPPER, useClass: BlogMapper },
     { provide: CATEGORIES_REPOSITORY, useClass: CategoriesRepository }

@@ -53,7 +53,7 @@
                 {{ validation.getErrorMessage('title', 'текст') }}
             </span>
         </label>
-        @if (enviroment.production) {
+        @if (!enviroment.useServiceLc) {
             <mat-form-field class="mb-1">
                 <mat-label>Категория</mat-label>
                 <input
