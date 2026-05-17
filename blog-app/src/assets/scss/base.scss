@@ -54,6 +54,9 @@
     --mat-card-title-text-size: var(--fs-6);
     --mat-card-title-text-weight: var(--fw-bold);
 
+    --mat-autocomplete-background-color: #fff;
+    --mat-snack-bar-container-color: #fff;
+
 
     font-family: 'Inter', sans-serif;
     font-size: 1rem;
@@ -186,4 +189,8 @@ main {
 a {
     text-decoration: none;
     color: var(--bs-black);
+}
+
+.d-block {
+    display: block !important;
 }

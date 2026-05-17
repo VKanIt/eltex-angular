@@ -1,15 +1,15 @@
 import { inject, Injectable } from "@angular/core";
-import { IBlogRepository } from "./blog-repository.interface";
-import { BLOG_STORE } from "../blog-store/blog-store.token";
+import { IBlogCardRepository } from "./blog-card-repository.interface";
+import { BLOG_CARD_STORE } from "../blog-card-store/blog-card-store.token";
 import { Blog } from "../../types/Blog";
 import { Observable } from "rxjs";
 import { Comment } from "../../types/Comment";
 import { STORAGE_SERVICE } from "../storage-service/storage-service.token";
 
 @Injectable()
-export class BlogRepository implements IBlogRepository {
+export class BlogCardRepositoryLc implements IBlogCardRepository {
     //-----INJECTS-----\\
-    private blogStore = inject(BLOG_STORE);
+    private blogStore = inject(BLOG_CARD_STORE);
     private storageService = inject(STORAGE_SERVICE);
 
     //-----METHODS-----\\

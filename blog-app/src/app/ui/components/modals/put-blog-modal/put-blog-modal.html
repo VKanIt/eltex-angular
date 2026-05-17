@@ -53,6 +53,59 @@
                 {{ validation.getErrorMessage('title', 'текст') }}
             </span>
         </label>
+        @if (enviroment.production) {
+            <mat-form-field class="mb-1">
+                <mat-label>Категория</mat-label>
+                <input
+                    class="mat"
+                    type="text"
+                    matInput
+                    formControlName="category" 
+                    [matAutocomplete]="auto"
+                >
+                <mat-autocomplete 
+                    #auto="matAutocomplete"
+                    [displayWith]="displayFn"
+                >
+                    @for (option of filteredOptions | async; track option) {
+                        <mat-option [value]="option">{{option.name}}</mat-option>
+                    }
+                </mat-autocomplete>
+            </mat-form-field>
+            @let isInvalidImage = validation.isInvalid('image');
+            <div class="content-center mb-1">
+                <div 
+                    class="view-image"
+                    [class]="{'active' : imageUrl() !== null}"
+                    (click)="deleteFile()"
+                >
+                    <img
+                        [src]="imageUrl()"
+                        alt=""
+                    />
+                </div>
+            </div>
+            <div class="mb-1">
+                <label 
+                    class="input-wrapper input-box image"
+                    [class]="{'invalid' : isInvalidImage}"
+                >
+                    Загрузить изображение
+                    <input
+                        type="file"
+                        accept=".jpg, .jpeg, .png"
+                        name="image"
+                        (change)="loadFile($event)"
+                    />
+                </label>
+                <span
+                    class="invalid-message"
+                    [class]="{'d-block' : isInvalidImage}"
+                >
+                    {{ validation.getErrorMessage('image') }}
+                </span>
+            </div>
+        }
         <div class="content-center">
             <button
                 class="btn" 

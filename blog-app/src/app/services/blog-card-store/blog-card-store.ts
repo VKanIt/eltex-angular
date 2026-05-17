@@ -1,10 +1,10 @@
 import { Injectable, signal } from "@angular/core";
-import { IBlogStore } from "./blog-store.interface";
+import { IBlogCardStore } from "./blog-card-store.interface";
 import { Blog } from "../../types/Blog";
 import { Comment } from "../../types/Comment";
 
 @Injectable()
-export class BlogStore implements IBlogStore {
+export class BlogCardStore implements IBlogCardStore {
     //-----VARIABLES-----\\
     public limitComments: number = 6;
     

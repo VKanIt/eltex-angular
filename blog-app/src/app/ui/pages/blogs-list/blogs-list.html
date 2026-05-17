@@ -21,8 +21,8 @@
             <div class="card-blog-min">
                 <app-card-blog 
                     [blog]="item"
-                    (delete)="deleteBlog($index)"
-                    (edit)="openModalEditBlog($index, $event)"
+                    (delete)="deleteBlog($index, item.id)"
+                    (edit)="openModalEditBlog($index, item.id, $event)"
                 />
             </div>
         } @empty {

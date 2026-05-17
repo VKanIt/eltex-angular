@@ -2,21 +2,22 @@ import { ChangeDetectionStrategy, Component, DestroyRef, inject, input } from '@
 import {MatCardModule} from '@angular/material/card';
 import { Comment } from '../../../types/Comment';
 import { InputRating } from '../inputs/input-rating/input-rating';
-import { BLOG_STORE } from '../../../services/blog-store/blog-store.token';
-import { BLOG_REPOSITORY } from '../../../services/blog-repository/blog-repository.token';
+import { BLOG_CARD_STORE } from '../../../services/blog-card-store/blog-card-store.token';
+import { BLOG_CARD_REPOSITORY } from '../../../services/blog-card-repository/blog-card-repository.token';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-card-comment',
-  imports: [MatCardModule, InputRating],
+  imports: [MatCardModule, InputRating, DatePipe],
   templateUrl: 'card-comment.html',
   styleUrl: 'card-comment.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardComment {
   //-----INJECTS-----\\
-  private blogStore = inject(BLOG_STORE);
-  private blogRepository = inject(BLOG_REPOSITORY);
+  private blogStore = inject(BLOG_CARD_STORE);
+  private blogRepository = inject(BLOG_CARD_REPOSITORY);
   private destroyRef = inject(DestroyRef);
 
   //-----SIGNALS-----\\
@@ -37,7 +38,8 @@ export class CardComment {
     this.blogRepository.updateRatingComment(this.comment().id, e)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((comments) => {
-        this.blogStore.updateComments(this.blogRepository.getCommentsBlog(this.comment().blogId, false, comments));
+        const blogsComments = this.blogRepository.getCommentsBlog(this.comment().blogId, false, comments);
+        this.blogStore.updateComments(blogsComments);
       });
   }
 }
