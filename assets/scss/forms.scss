@@ -51,9 +51,73 @@ textarea {
 }
 
 .form-add-blog {
-    input, textarea {
+    input:not(.mat), textarea {
         background-color: #fff;
         color: var(--bs-black);
         border: 1px solid var(--bs-black);
+    }
+
+    .image {
+        padding: var(--p-m-2);
+        cursor: pointer;
+        background-color: #fff;
+        color: var(--bs-black);
+        border: 1px solid var(--bs-black);
+        border-radius: var(--border-radius);
+        text-align: center;
+        text-decoration: underline;
+        display: block;
+        margin: 0;
+
+        input {
+            display: none;
+        }
+    }
+}
+
+.view-image {
+    height: 80px;
+    width: 80px;
+    position: relative;
+    background-color: var(--bs-light-gray);
+    border-radius: var(--border-radius);
+
+    img {
+        height: 80px;
+        width: 80px;    
+        border: 1px solid var(--bs-black);
+        border-radius: var(--border-radius);
+    }
+
+    &.active {
+        cursor: pointer;
+
+        &:hover {
+            &::before, &::after {
+                display: block;
+            }
+        }
+
+        &::before {
+            display: none;
+            position: absolute;
+            background: var(--bs-invalid);
+            border-radius: 50%;
+            content: "";
+            height: 100%;
+            left: 0;
+            top: 0;
+            width: 100%;
+        }
+
+        &::after {
+            display: none;
+            position: absolute;
+            color: #fff !important;
+            content: "✕";
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+        }
     }
 }
