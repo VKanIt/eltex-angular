@@ -1,15 +1,16 @@
-import { inject, Injectable, signal } from "@angular/core";
+import { DestroyRef, inject, Injectable, signal } from "@angular/core";
 import { IWebsocket } from "./websocket.interface";
 import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
 import { ENV_CONF } from "../../../environments/enviroment.token";
 import { MessageGetDto } from "../../dto/websocket/message.get.dto";
-import { BlogCardStore } from "../blog-card-store/blog-card-store";
-import { Observable } from "rxjs";
+import { Observable, tap } from "rxjs";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 
 @Injectable()
 export class Websocket implements IWebsocket {
     //-----INJECTS-----\\
     private enviroment = inject(ENV_CONF);
+    private destroyRef = inject(DestroyRef);
 
     //-----SIGNALS-----\\
     public isConnect = signal<boolean>(false);
@@ -27,11 +28,14 @@ export class Websocket implements IWebsocket {
         this.isConnect.set(true);
         this.socket = webSocket(this.enviroment.websocketUrl);
 
-        this.socket.subscribe({
-            next: (msg: MessageGetDto) => msg,
-            error: (err) => console.error(err),
-            complete: () => console.log('complete')
-        });
+        this.socket
+            .pipe(
+                tap((msg: MessageGetDto) => msg),
+                takeUntilDestroyed(this.destroyRef)
+            )
+            .subscribe({
+                error: (err) => console.error(err),
+            });
     }
 
     public subscribeArticle(id: number|string): void {
