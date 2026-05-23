@@ -26,7 +26,8 @@ export class CardBlog {
     text: '',
     image: null,
     rating: 0,
-    categoryId: null
+    categoryId: null,
+    comments: []
   });
   public isBigCard = input(false);
 

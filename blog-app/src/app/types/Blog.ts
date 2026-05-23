@@ -1,3 +1,5 @@
+import { Comment } from "./Comment"
+
 export type Blog = {
     id: string|number,
     date: Date,
@@ -5,5 +7,6 @@ export type Blog = {
     text: string,
     image: string|null,
     rating: number,
-    categoryId?: string|null
+    categoryId?: string|null,
+    comments: Comment[]
 }

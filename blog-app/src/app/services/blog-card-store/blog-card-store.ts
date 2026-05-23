@@ -16,6 +16,8 @@ export class BlogCardStore implements IBlogCardStore {
         text: '',
         image: null,
         rating: 0,
+        categoryId: null,
+        comments: []
     });
     public comments = signal<Comment[]>([]);
     public countComments = signal<number>(0);

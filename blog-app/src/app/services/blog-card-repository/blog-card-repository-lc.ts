@@ -75,7 +75,7 @@ export class BlogCardRepositoryLc implements IBlogCardRepository {
         });
     }
 
-    public updateRatingComment(commentId: number, newRating: number): Observable<Comment[]> {
+    public updateRatingComment(commentId: number|string, newRating: number): Observable<Comment[]> {
         return new Observable((subscriber) => {
             this.blogStore.isDisabled.set(true);
 
@@ -111,7 +111,7 @@ export class BlogCardRepositoryLc implements IBlogCardRepository {
         return data.slice(0, this.blogStore.limitActiveComments());
     }
 
-    private getIndex(id: number, data: any[]): number {
+    private getIndex(id: number|string, data: any[]): number {
         return data.findIndex((val) => val.id === id);
     }
 }

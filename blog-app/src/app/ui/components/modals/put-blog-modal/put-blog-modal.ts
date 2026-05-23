@@ -11,7 +11,6 @@ import { map, Observable, startWith } from 'rxjs';
 import { Category } from '../../../../types/Category';
 import { AsyncPipe } from '@angular/common';
 import { MatInput } from '@angular/material/input';
-import { ENV_CONF } from '../../../../../environments/enviroment.token';
 
 @Component({
   selector: 'put-blog-modal',
@@ -36,7 +35,6 @@ export class PutBlogModal {
     categories: WritableSignal<Category[]>
   }>(MAT_DIALOG_DATA);
   protected validation = inject(VALIDATION);
-  protected enviroment = inject(ENV_CONF);
   
   //-----VARIABLES-----\\
   protected putBlogForm = new FormGroup({

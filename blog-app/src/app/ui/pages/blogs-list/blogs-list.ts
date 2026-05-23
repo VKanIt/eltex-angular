@@ -11,7 +11,7 @@ import { MatIcon } from "@angular/material/icon";
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CATEGORIES_REPOSITORY } from '../../../services/categories-repository/categories-repository.token';
 import { Category } from '../../../types/Category';
-import { ENV_CONF } from '../../../../environments/enviroment.token';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-blogs-list',
@@ -28,7 +28,6 @@ export class BlogsList {
   private blogsStore = inject(BLOGS_STORE);
   private categoriesRepository = inject(CATEGORIES_REPOSITORY);
   private destroyRef = inject(DestroyRef);
-  private enviroment = inject(ENV_CONF);
 
   //-----SIGNALS-----\\
   protected isLoad = this.blogsStore.isLoad;
@@ -36,18 +35,27 @@ export class BlogsList {
   protected count = this.blogsStore.count;
   protected limitActive = this.blogsStore.limitActive;
   protected categories = signal<Category[]>([]);
+  protected countComments = signal<number>(0);
   
   //-----METHODS-----\\
   constructor() {
-    if (!this.enviroment.useServiceLc) {
-      this.categoriesRepository.getCategories()
-        .pipe(takeUntilDestroyed(this.destroyRef))
-        .subscribe((data: Category[]) => {
-          this.categories.set(data);
-        });
-    }
+    this.categoriesRepository.getCategories()
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((data: Category[]) => {
+        this.categories.set(data);
+      });
     
     this.blogsRepository.getBlogs(false, 7);
+
+    const observe = this.blogsRepository.getCountComments();
+
+    if (typeof observe === 'number') {
+      this.countComments.set(observe);
+    } else {
+      observe.subscribe((resp) => {
+        this.countComments.set(resp);
+      });
+    }
   }
 
   protected openModalAddBlog() {
@@ -137,7 +145,7 @@ export class BlogsList {
     this.dialog.open(StatisticBlogsModal, {
       data: {
         countBlogs: this.blogsStore.count(),
-        countComments: this.blogsRepository.getCountComments()
+        countComments: this.countComments()
       },
     });
   }
@@ -182,7 +190,8 @@ export class BlogsList {
           text: result.text ?? '',
           image: null,
           rating: 0,
-          categoryId: categoryId
+          categoryId: categoryId,
+          comments: []
         }, result.image);
     }
 

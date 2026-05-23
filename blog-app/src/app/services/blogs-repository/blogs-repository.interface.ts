@@ -6,5 +6,5 @@ export interface IBlogsRepository {
     addBlog(blog: Blog, newImage?: File|null): Observable<Blog[]>
     editBlog(newData: {title: string, text: string, image: File|null, categoryId: string|null}, index: number, id?: string|number): Observable<Blog[]>
     deleteBlog(index: number, id?: string|number): Observable<Blog[]|null>
-    getCountComments(): number
+    getCountComments(): number|Observable<number>
 }
