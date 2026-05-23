@@ -15,6 +15,11 @@ import { Title } from '@angular/platform-browser';
 import { InputRating } from '../../components/inputs/input-rating/input-rating';
 import { environment } from '../../../../environments/environment';
 import { BlogCardRepositoryLc } from '../../../services/blog-card-repository/blog-card-repository-lc';
+import { ENV_CONF } from '../../../../environments/enviroment.token';
+import { WEBSOCKET } from '../../../services/websocket/websocket.token';
+import { Websocket } from '../../../services/websocket/websocket';
+import { MessageGetDto, WebSocketPayload } from '../../../dto/websocket/message.get.dto';
+import type { Blog as typeBlog } from '../../../types/Blog';
 
 @Component({
   selector: 'app-blog',
@@ -25,6 +30,7 @@ import { BlogCardRepositoryLc } from '../../../services/blog-card-repository/blo
   providers: [
     { provide: BLOG_CARD_STORE, useClass: BlogCardStore },
     { provide: BLOG_CARD_REPOSITORY, useClass: environment.useServiceLc ? BlogCardRepositoryLc : BlogCardRepository },
+    { provide: WEBSOCKET, useClass: Websocket }
   ]
 })
 export class Blog { 
@@ -35,9 +41,11 @@ export class Blog {
   private destroyRef = inject(DestroyRef);
   private readonly dialog = inject(MatDialog);
   private titlePage = inject(Title);
+  private enviroment = inject(ENV_CONF);
+  private websocket = inject(WEBSOCKET);
 
   //-----SIGNALS-----\\
-  protected blogId = signal<number>(1);
+  protected blogId = signal<number|string>(1);
   protected blog = this.blogStore.blog;
   protected comments = this.blogStore.comments;
   protected countComments = this.blogStore.countComments;
@@ -45,15 +53,55 @@ export class Blog {
   protected isEdit = signal<boolean>(false);
   protected isDisabled = this.blogStore.isDisabled;
 
+  private websocketEvents = new Map([
+    [
+      'ARTICLE_RATING_CHANGED', (payload: WebSocketPayload, data: typeBlog) => {
+        data.rating = payload.rating;
+        this.blogStore.updateBlog(data);
+      }
+    ],
+    [
+      'COMMENT_CREATED', (payload: WebSocketPayload, data: typeBlog) => {
+        data.comments.unshift({
+          id: payload.commentId,
+          name: payload.username,
+          text: payload.content,
+          date: new Date(payload.createdAt),
+          rating: 0,
+          blogId: payload.articleId
+        });
+
+        this.blogStore.updateBlog(data);
+        const comments = this.blogRepository.getCommentsBlog(payload.articleId, false);
+
+        this.blogStore.updateComments(comments);
+      }
+    ],
+    [
+      'COMMENT_RATING_CHANGED', (payload: WebSocketPayload, data: typeBlog) => {
+        const index = data.comments.findIndex((item) => item.id === payload.commentId);
+        
+        const tmp = {...data.comments[index]};
+        tmp.rating = payload.rating;
+        data.comments[index] = tmp;
+
+        this.blogStore.updateBlog(data);
+        const comments = this.blogRepository.getCommentsBlog(payload.articleId, false);
+
+        this.blogStore.updateComments(comments);
+      }
+    ]
+  ]);
+
   //-----METHODS-----\\
   constructor() {
     this.activatedRoute.params
       .pipe(
-        map((params) => Number(params['id'])),
-        tap((id: number) => {
+        map((params) => this.enviroment.useServiceLc ? Number(params['id']) : params['id']),
+        tap((id: number|string) => {
 	        this.blogId.set(id);
 	      }),
-        switchMap((id: number) => {
+        switchMap((id: number|string) => {
 		      return this.blogRepository.getBlog(id);
 	      }),
         catchError((error: string) => {
@@ -63,6 +111,18 @@ export class Blog {
       )
       .subscribe(() => {
         this.titlePage.setTitle(this.blog().title);
+        this.websocket.subscribeArticle(this.blog().id);
+        
+        this.websocket.getChanged()?.subscribe((resp: MessageGetDto) => {
+          const data = {...this.blogStore.blog()};
+          data.comments = [...this.blogStore.blog().comments];
+
+          const func = this.websocketEvents.get(resp.type);
+
+          if (func !== undefined) {
+            func(resp.payload, data);
+          }
+        });
       });
   }
 
@@ -70,7 +130,9 @@ export class Blog {
     this.blogRepository.updateRatingBlog(this.blogId(), e)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((blog) => {
-        this.blogStore.updateBlog(blog);
+        if (!this.websocket.isConnect()) {
+          this.blogStore.updateBlog(blog);
+        }
       });
   }
 
@@ -100,7 +162,10 @@ export class Blog {
         observer
           .pipe(takeUntilDestroyed(this.destroyRef))
           .subscribe((comments) => {
-            this.blogStore.updateComments(this.blogRepository.getCommentsBlog(this.blogId(), false, comments));
+            if (!this.websocket.isConnect()) {
+              const data = this.blogRepository.getCommentsBlog(this.blogId(), false, comments);
+              this.blogStore.updateComments(data); 
+            }
           });
       });
   }

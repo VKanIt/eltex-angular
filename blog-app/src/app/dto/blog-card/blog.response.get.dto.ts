@@ -1,3 +1,5 @@
+import { CommentGetDto } from "./comment.get.dto"
+
 export type BlogResponseGetDto = {
     id: string,
     title: string,
@@ -6,5 +8,6 @@ export type BlogResponseGetDto = {
     createdAt: string,
     imgSrc: string,
     rating: number,
-    updatedAt: string
+    updatedAt: string,
+    comments: CommentGetDto[]
 }

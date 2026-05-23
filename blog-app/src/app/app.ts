@@ -16,6 +16,7 @@ import { BLOG_MAPPER } from './services/blog-mapper/blog-mapper.token';
 import { BlogMapper } from './services/blog-mapper/blog-mapper';
 import { CATEGORIES_REPOSITORY } from './services/categories-repository/categories-repository.token';
 import { CategoriesRepository } from './services/categories-repository/categories-repository';
+import { CategoriesRepositoryLc } from './services/categories-repository/categories-repository-lc';
 
 
 @Component({
@@ -28,7 +29,7 @@ import { CategoriesRepository } from './services/categories-repository/categorie
     { provide: BLOGS_REPOSITORY, useClass: environment.useServiceLc ? BlogsRepositoryLc : BlogsRepository },
     { provide: STORAGE_SERVICE, useClass: StorageService },
     { provide: BLOG_MAPPER, useClass: BlogMapper },
-    { provide: CATEGORIES_REPOSITORY, useClass: CategoriesRepository }
+    { provide: CATEGORIES_REPOSITORY, useClass: environment.useServiceLc ? CategoriesRepositoryLc : CategoriesRepository }
   ]
 })
 export class App {

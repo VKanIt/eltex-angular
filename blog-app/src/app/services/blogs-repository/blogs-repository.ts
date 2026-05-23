@@ -74,7 +74,9 @@ export class BlogsRepository implements IBlogsRepository {
                     const data = this.blogsStore.blogs();
                     
                     data.unshift(this.blogMapper.mapBlog(resp));
-                    data.splice(data.length - 1, 1);
+                    if (this.blogsStore.count() + 1 > this.blogsStore.limit) {
+                        data.splice(data.length - 1, 1);
+                    }
 
                     this.blogsStore.isDisabled.set(false);
                     
@@ -110,6 +112,7 @@ export class BlogsRepository implements IBlogsRepository {
                     const data = this.blogsStore.blogs();
                     
                     data[index] = this.blogMapper.mapBlog(resp);
+                    this.blogsStore.updateBlogs([]);
 
                     this.blogsStore.isDisabled.set(false);
                     
@@ -140,7 +143,13 @@ export class BlogsRepository implements IBlogsRepository {
             );
     }
 
-    public getCountComments(): number {
-        return 0;
+    public getCountComments(): Observable<number> {
+        return this.httpClient.get<number>('/api/comments/count')
+            .pipe(
+                takeUntilDestroyed(this.destroyRef),
+                map((resp: number) => {
+                    return resp;
+                })
+            );
     }
 }
