@@ -1,11 +1,17 @@
 button, a {
     transition: 0.2s ease-in-out;
     cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    line-height: 26px;
 }
 
 .link {
     display: block;
     color: var(--bs-gray);
+    border: 0;
+    background: none;
+    padding: 0;
     text-decoration: none;
 
     &:hover, &.active {

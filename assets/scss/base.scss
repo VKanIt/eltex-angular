@@ -44,6 +44,11 @@
     --mat-button-filled-container-color: var(--bs-green);
     --mat-button-filled-label-text-color: #fff;
     --mat-button-filled-container-shape: var(--border-radius);
+
+    --mat-button-outlined-container-color: var(--bs-green);
+    --mat-button-outlined-label-text-color: var(--bs-green);
+    --mat-button-outlined-container-shape: var(--border-radius);
+
     --mat-sys-on-error-container: var(--bs-invalid);
     --mat-sys-error: var(--bs-invalid);
 
@@ -193,4 +198,10 @@ a {
 
 .d-block {
     display: block !important;
+}
+
+.mat-mdc-outlined-button:hover {
+    --mat-button-outlined-container-color: var(--bs-green);
+    background-color: var(--bs-green);
+    --mat-button-outlined-label-text-color: #fff;
 }
