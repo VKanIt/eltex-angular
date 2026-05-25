@@ -20,6 +20,7 @@ import { WEBSOCKET } from '../../../services/websocket/websocket.token';
 import { Websocket } from '../../../services/websocket/websocket';
 import { MessageGetDto, WebSocketPayload } from '../../../dto/websocket/message.get.dto';
 import type { Blog as typeBlog } from '../../../types/Blog';
+import { AUTH_SERVICE } from '../../../services/auth-service/auth-service.token';
 
 @Component({
   selector: 'app-blog',
@@ -43,6 +44,7 @@ export class Blog {
   private titlePage = inject(Title);
   private enviroment = inject(ENV_CONF);
   private websocket = inject(WEBSOCKET);
+  private authService = inject(AUTH_SERVICE);
 
   //-----SIGNALS-----\\
   protected blogId = signal<number|string>(1);
@@ -52,6 +54,7 @@ export class Blog {
   protected limitActiveComments = this.blogStore.limitActiveComments;
   protected isEdit = signal<boolean>(false);
   protected isDisabled = this.blogStore.isDisabled;
+  protected client = this.authService.client;
 
   private websocketEvents = new Map([
     [
@@ -93,7 +96,7 @@ export class Blog {
     ]
   ]);
 
-  //-----METHODS-----\\
+  //-----METHODS-----\\  
   constructor() {
     this.activatedRoute.params
       .pipe(
@@ -126,11 +129,15 @@ export class Blog {
       });
   }
 
+  ngOnDestroy() {
+    this.websocket.unsubscribeArticle();
+  }
+
   protected editRating(e: number) {
     this.blogRepository.updateRatingBlog(this.blogId(), e)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((blog) => {
-        if (!this.websocket.isConnect()) {
+        if (!this.websocket.isConnect() && blog !== null) {
           this.blogStore.updateBlog(blog);
         }
       });
@@ -139,7 +146,8 @@ export class Blog {
   protected addComment() {
     const dialogRef = this.dialog.open(AddCommentModal, {
       data: {
-        isDisabled: this.blogStore.isDisabled
+        isDisabled: this.blogStore.isDisabled,
+        username: this.client().username
       }
     });
 

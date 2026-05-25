@@ -21,12 +21,13 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 export class AddCommentModal { 
   protected readonly dialogRef = inject(MatDialogRef);
   protected data = inject<{
-    isDisabled: WritableSignal<boolean>
+    isDisabled: WritableSignal<boolean>,
+    username: string
   }>(MAT_DIALOG_DATA);
   protected validation = inject(VALIDATION);
 
   protected addCommentForm = new FormGroup({
-    name: new FormControl(null, 
+    name: new FormControl(this.data.username, 
       [Validators.required]
     ),
     text: new FormControl(null,

@@ -1,0 +1,93 @@
+<div class="modal-header">
+    <button
+        [hidden]="!isRegister()"
+        matIconButton
+        title="Назад"
+        (click)="isRegister.set(false)"
+    >
+        <mat-icon>arrow_back</mat-icon>
+    </button>
+    <p class="title">
+        {{ isRegister() ? 'Регистрация' : 'Войти' }}
+    </p>
+    <button 
+        matIconButton
+        title="Закрыть"
+        (click)="closeDialog()"
+    >
+        <mat-icon>close</mat-icon>
+    </button>
+</div>
+<mat-dialog-content>
+    <form
+        novalidate
+        [formGroup]="authForm"
+        (submit)="auth($event)"
+    >
+        <mat-form-field class="mb-05">
+            <mat-label>Логин</mat-label>
+            @let isInvalidLogin = validation.isInvalid('login');
+            <input 
+                type="text"
+                matInput
+                formControlName="login"
+            >
+            @if (isInvalidLogin) {
+                <mat-error class="invalid-message">{{ validation.getErrorMessage('login', 'логин') }}</mat-error>
+            }
+        </mat-form-field>
+        <mat-form-field
+            [hidden]="!isRegister()" 
+            class="mb-05"
+        >
+            <mat-label>Email</mat-label>
+            @let isInvalidEmail = validation.isInvalid('email');
+            <input  
+                type="email"
+                matInput
+                formControlName="email"
+            >
+            @if (isInvalidEmail) {
+                <mat-error class="invalid-message">{{ validation.getErrorMessage('email', 'email') }}</mat-error>
+            }
+        </mat-form-field>
+        <mat-form-field class="mb-1">
+            <mat-label>Пароль</mat-label>
+            @let isInvalidPass = validation.isInvalid('password');
+            <input  
+                type="password"
+                matInput
+                formControlName="password"
+            >
+            @if (isInvalidPass) {
+                <mat-error class="invalid-message">{{ validation.getErrorMessage('password', 'пароль') }}</mat-error>
+            }
+        </mat-form-field>
+        <div class="auth-btn">
+            <button
+                [hidden]="isRegister()"
+                matButton="filled"
+                type="submit"
+                [disabled]="data.isDisabled()"
+            >
+                Вход
+            </button>
+            <button
+                [hidden]="isRegister()"
+                matButton="outlined"
+                [disabled]="data.isDisabled()"
+                (click)="isRegister.set(true)"
+            >
+                Регистрация
+            </button>
+            <button
+                [hidden]="!isRegister()"
+                matButton="filled"
+                type="submit"
+                [disabled]="data.isDisabled()"
+            >
+                Зарегистрироваться
+            </button>
+        </div>
+    </form>
+</mat-dialog-content>

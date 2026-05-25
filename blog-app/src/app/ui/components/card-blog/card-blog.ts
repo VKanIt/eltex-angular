@@ -3,10 +3,11 @@ import { Blog } from '../../../types/Blog';
 import { BLOGS_STORE } from '../../../services/blogs-store/blogs-store.token';
 import { RouterLink } from '@angular/router';
 import { MatIcon } from "@angular/material/icon";
+import { RoleView } from "../../directives/role-view";
 
 @Component({
   selector: 'app-card-blog',
-  imports: [RouterLink, MatIcon],
+  imports: [RouterLink, MatIcon, RoleView],
   templateUrl: 'card-blog.html',
   styleUrl: 'card-blog.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

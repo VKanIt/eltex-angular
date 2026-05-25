@@ -37,6 +37,9 @@ export class CardComment {
   public editRating(e: number) {
     this.blogRepository.updateRatingComment(this.comment().id, e)
       .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe();
+      .subscribe((comments) => {
+        const blogsComments = this.blogRepository.getCommentsBlog(this.comment().blogId, false, comments);
+        this.blogStore.updateComments(blogsComments);
+      });
   }
 }

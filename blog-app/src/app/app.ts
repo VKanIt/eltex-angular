@@ -17,6 +17,9 @@ import { BlogMapper } from './services/blog-mapper/blog-mapper';
 import { CATEGORIES_REPOSITORY } from './services/categories-repository/categories-repository.token';
 import { CategoriesRepository } from './services/categories-repository/categories-repository';
 import { CategoriesRepositoryLc } from './services/categories-repository/categories-repository-lc';
+import { AUTH_SERVICE } from './services/auth-service/auth-service.token';
+import { AuthServiceLc } from './services/auth-service/auth-service-lc';
+import { AuthService } from './services/auth-service/auth-service';
 
 
 @Component({
@@ -29,13 +32,15 @@ import { CategoriesRepositoryLc } from './services/categories-repository/categor
     { provide: BLOGS_REPOSITORY, useClass: environment.useServiceLc ? BlogsRepositoryLc : BlogsRepository },
     { provide: STORAGE_SERVICE, useClass: StorageService },
     { provide: BLOG_MAPPER, useClass: BlogMapper },
-    { provide: CATEGORIES_REPOSITORY, useClass: environment.useServiceLc ? CategoriesRepositoryLc : CategoriesRepository }
+    { provide: CATEGORIES_REPOSITORY, useClass: environment.useServiceLc ? CategoriesRepositoryLc : CategoriesRepository },
+    { provide: AUTH_SERVICE, useClass: environment.useServiceLc ? AuthServiceLc : AuthService }
   ]
 })
 export class App {
   //-----INJECTS-----\\
   private readonly router = inject(Router);
   private destroyRef = inject(DestroyRef);
+  private authService = inject(AUTH_SERVICE);
 
   //-----SIGNALS-----\\
   protected isNavigating = signal(false);
@@ -43,6 +48,16 @@ export class App {
 
   //-----METHODS-----\\
   constructor() {
+    this.authService.getClient()
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((resp: boolean) => {
+        if (resp) {
+          this.authService.refreshToken()
+            .pipe(takeUntilDestroyed(this.destroyRef))
+            .subscribe()
+        }
+      })
+
     this.router.events
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((event: Event) => {

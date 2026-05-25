@@ -6,4 +6,5 @@ export interface IWebsocket {
 
     subscribeArticle(id: number|string): void,
     getChanged(): Observable<any>|undefined
+    unsubscribeArticle(): void
 }

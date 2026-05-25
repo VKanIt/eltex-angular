@@ -53,4 +53,9 @@ export class Websocket implements IWebsocket {
     public getChanged(): Observable<any>|undefined {
         return this.socket?.asObservable();
     }
+
+    public unsubscribeArticle(): void {
+        this.socket?.unsubscribe();
+        this.socket?.complete();
+    }
 }

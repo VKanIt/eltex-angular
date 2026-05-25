@@ -12,10 +12,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { CATEGORIES_REPOSITORY } from '../../../services/categories-repository/categories-repository.token';
 import { Category } from '../../../types/Category';
 import { Observable } from 'rxjs';
+import { RoleView } from "../../directives/role-view";
 
 @Component({
   selector: 'app-blogs-list',
-  imports: [CardBlog, MatIcon],
+  imports: [CardBlog, MatIcon, RoleView],
   templateUrl: 'blogs-list.html',
   styleUrl: 'blogs-list.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

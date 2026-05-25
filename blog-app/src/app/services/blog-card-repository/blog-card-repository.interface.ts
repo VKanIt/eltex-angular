@@ -6,6 +6,6 @@ export interface IBlogCardRepository {
     getBlog(id: number|string): Observable<string>
     addComment(comment: Comment): Observable<Comment[]>
     updateRatingComment(commentId: number|string, newRating: number): Observable<Comment[]>
-    updateRatingBlog(id: number|string, newRating: number): Observable<Blog>
+    updateRatingBlog(id: number|string, newRating: number): Observable<Blog|null>
     getCommentsBlog(id: number|string, isMore?: boolean, dataInit?: Comment[]): Comment[]
 }

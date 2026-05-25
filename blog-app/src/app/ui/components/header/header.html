@@ -24,6 +24,39 @@
                     Блог
                 </a>
             </li>
+            <li>
+                <button
+                    [hidden]="client().id !== null"
+                    class="link"
+                    (click)="openAuthModal()"
+                >
+                    Вход
+                </button>
+                <div
+                    class="login"
+                    [hidden]="client().id === null"
+                >
+                    <button
+                        class="btn-icon text-green"
+                        title="Пользователь"
+                        (click)="isShowLogout.update((val) => !val)"
+                    >
+                        <mat-icon>account_circle</mat-icon>
+                    </button>
+                    <div 
+                        class="form-logout"
+                        [hidden]="!isShowLogout()"
+                    >
+                        <span>{{ client().username }}</span>
+                        <button
+                            matButton="filled"
+                            (click)="logout()"
+                        >
+                            Выход
+                        </button>
+                    </div>
+                </div>
+            </li>
         </ul>
     </nav>
 </header>

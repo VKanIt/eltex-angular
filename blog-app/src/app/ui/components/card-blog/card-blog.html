@@ -1,7 +1,10 @@
 <a [routerLink]="`/blogs/${blog().id}/`">
     <article>
         @if (!isBigCard()) { 
-            <div class="blog-setting">
+            <div 
+                class="blog-setting"
+                *appRoleView="'admin'"
+            >
                 <button
                     class="btn-icon blog blog-edit"
                     title="Редактировать статью"

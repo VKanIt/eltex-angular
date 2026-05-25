@@ -22,7 +22,8 @@
     class="comments-title"
 >
     <h2>Комментарии</h2>
-    <button 
+    <button
+        [hidden]="client().id === null"
         class="btn"
         (click)="addComment()"
     >

@@ -51,7 +51,7 @@ export class BlogCardRepositoryLc implements IBlogCardRepository {
         });
     }
 
-    public updateRatingBlog(id: number, newRating: number): Observable<Blog> {
+    public updateRatingBlog(id: number, newRating: number): Observable<Blog|null> {
         return new Observable((subscriber) => {
             this.blogStore.isDisabled.set(true);
 

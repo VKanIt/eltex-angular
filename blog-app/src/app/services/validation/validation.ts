@@ -45,6 +45,9 @@ export class Validation implements IValidation {
 
             case 'min':
                 return `Значение меньше ${errorData.min}`;
+
+            case 'email':
+                return 'Некорректный Email';
             
             case 'errorTypeFile':
                 return `Неверный тип файла. Ожидалось ${errorData.acceptTypes.join(', ')}`;

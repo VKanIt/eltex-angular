@@ -13,6 +13,9 @@ import { ADD_COMMENT } from "../../gql/blog-card/add-comment";
 import { BlogsResponseGetDto } from "../../dto/blogs/blogs.response.get.dto";
 import { UPDATE_RATING_COMMENT } from "../../gql/blog-card/update-rating-comment";
 import { UPDATE_RATING_BLOG } from "../../gql/blog-card/update-rating-blog";
+import { CommentResponsePostDto } from "../../dto/blog-card/comment.response.post.dto";
+import { UpdateRatingBlogResponsePutDto } from "../../dto/blog-card/update-rating-blog.response.put.dto";
+import { UpdateRatingCommentResponsePutDto } from "../../dto/blog-card/update-rating-comment.response.put.dto";
 
 @Injectable()
 export class BlogCardRepository implements IBlogCardRepository {
@@ -48,7 +51,7 @@ export class BlogCardRepository implements IBlogCardRepository {
     public addComment(comment: Comment): Observable<Comment[]> {
         this.blogStore.isDisabled.set(true);
 
-        return this.apollo.mutate({
+        return this.apollo.mutate<CommentResponsePostDto>({
             mutation: ADD_COMMENT,
             variables: {
                 body: {
@@ -59,11 +62,14 @@ export class BlogCardRepository implements IBlogCardRepository {
             }
         }).pipe(
             takeUntilDestroyed(this.destroyRef),
-            catchError((error: CombinedGraphQLErrors) => {
+            catchError((error: any) => {
                 console.log(error);
                 return [];
             }),
-            map((resp: any) => {
+            map((resp: Apollo.MutateResult<CommentResponsePostDto>) => {
+                if (resp.data === undefined) {
+                    return [];
+                }
                 const data = this.blogMapper.mapComment(resp.data.createComment);
                 const comments = this.blogStore.blog().comments;
                 comments.unshift(data);
@@ -75,10 +81,10 @@ export class BlogCardRepository implements IBlogCardRepository {
         );
     }
 
-    public updateRatingBlog(id: number|string, newRating: number): Observable<Blog> {
+    public updateRatingBlog(id: number|string, newRating: number): Observable<Blog|null> {
         this.blogStore.isDisabled.set(true);
         
-        return this.apollo.mutate({
+        return this.apollo.mutate<UpdateRatingBlogResponsePutDto>({
             mutation: UPDATE_RATING_BLOG,
             variables: {
                 id: id,
@@ -90,7 +96,11 @@ export class BlogCardRepository implements IBlogCardRepository {
                 console.log(error);
                 return [];
             }),
-            map((resp: any) => {
+            map((resp: Apollo.MutateResult<UpdateRatingBlogResponsePutDto>) => {
+                if (resp.data === undefined) {
+                    return null;
+                }
+
                 const blog = this.blogStore.blog();
                 blog.rating = resp.data.articleUpdateRating.rating;
 
@@ -104,7 +114,7 @@ export class BlogCardRepository implements IBlogCardRepository {
     public updateRatingComment(commentId: number|string, newRating: number): Observable<Comment[]> {
         this.blogStore.isDisabled.set(true);
 
-        return this.apollo.mutate({
+        return this.apollo.mutate<UpdateRatingCommentResponsePutDto>({
             mutation: UPDATE_RATING_COMMENT,
             variables: {
                 id: commentId,
@@ -116,7 +126,11 @@ export class BlogCardRepository implements IBlogCardRepository {
                 console.log(error);
                 return [];
             }),
-            map((resp: any) => {
+            map((resp: Apollo.MutateResult<UpdateRatingCommentResponsePutDto>) => {
+                if (resp.data === undefined) {
+                    return [];
+                }
+
                 const comments = this.blogStore.blog().comments;
                 const index = comments.findIndex((item) => item.id === commentId);
                 comments[index].rating = resp.data.updateCommentRating.rating;
